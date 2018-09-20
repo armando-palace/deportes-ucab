@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_040322) do
+ActiveRecord::Schema.define(version: 2018_09_20_224040) do
+
+  create_table "phone_types", force: :cascade do |t|
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "phones", force: :cascade do |t|
+    t.string "number"
+    t.integer "phone_type_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["phone_type_id"], name: "index_phones_on_phone_type_id"
+    t.index ["user_id"], name: "index_phones_on_user_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"

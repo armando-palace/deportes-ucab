@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :user_roles
   has_many :roles, through: :user_roles
+  has_many :phones
 
   def has_role?(role_name)
     roles.any? {|r| r.name == role_name.to_s}
