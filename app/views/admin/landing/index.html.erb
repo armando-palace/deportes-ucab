@@ -1,0 +1,12 @@
+<h1>¡Eres el Superadministrador!</h1>
+<br>
+<hr>
+<br>
+<% if @password %>
+  <h3>Tu correo es: <%= @user.email %></h3><!-- super@admin.com -->
+  <h3>Y tu contraseña es: "<%= @password %>"</h3><!-- password -->
+  <hr>
+  <h4>Por favor, recuerda estas credenciales e inicia sesión.</h4>
+<% else %>
+  <h3>Debes hacer primero "rails db:seed" antes de venir aquí</h3>
+<% end %>
