@@ -6,4 +6,16 @@ class User < ApplicationRecord
 
   has_many :user_roles
   has_many :roles, through: :user_roles
+
+  def has_role?(role_name)
+    roles.any? {|r| r.name == role_name.to_s}
+  end
+
+  def is_super_admin?
+    has_role?(:super_admin)
+  end
+
+  def is_admin?
+    has_role?(:admin) || role?(:super_admin)
+  end
 end

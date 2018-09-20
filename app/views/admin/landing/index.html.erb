@@ -7,6 +7,9 @@
   <h3>Y tu contraseña es: "<%= @password %>"</h3><!-- password -->
   <hr>
   <h4>Por favor, recuerda estas credenciales e inicia sesión.</h4>
+<% elsif User.first && User.first.is_super_admin? %>
+  <h3>¿Olvidaste tu contraseña de superadministrador?</h3>
+  <h4><%= link_to "Recuperar contraseña", "#" %></h4>
 <% else %>
   <h3>Debes hacer primero "rails db:seed" antes de venir aquí</h3>
 <% end %>
