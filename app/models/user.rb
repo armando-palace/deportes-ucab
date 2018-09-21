@@ -10,6 +10,14 @@ class User < ApplicationRecord
 
   validates_presence_of :id_card, :first_name, :last_name, :email
 
+  def full_name
+    "#{first_name} #{middle_name} #{last_name}"
+  end
+
+  def name
+    "#{first_name} #{last_name}"
+  end
+
   def has_role?(role_name)
     roles.any? {|r| r.name == role_name.to_s}
   end
