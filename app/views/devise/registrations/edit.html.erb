@@ -1,43 +1,83 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2 align="center">Editar Información Personal</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :id_card, "Cédula de Identidad" %>
+        <%= f.text_field :id_card, class: "form-control", placeholder: "V-12.345.678" %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :email, "Correo Electrónico" %>
+        <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: "juan@ejemplo.com" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :first_name, "Primer Nombre" %>
+        <%= f.text_field :first_name, class: "form-control", placeholder: "Juan" %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :middle_name, "Segundo Nombre" %>
+        <%= f.text_field :middle_name, class: "form-control", placeholder: "Pablo" %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :last_name, "Apellido" %>
+        <%= f.text_field :last_name, class: "form-control", placeholder: "Pérez" %>
+      </div>
+    </div>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :password, "Contraseña" %> <em>(dejar en blanco si no se desea cambiar)</em>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        <% if @minimum_password_length %>
+          <em><%= @minimum_password_length %> caracteres mínimo</em>
+        <% end %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :password_confirmation, "Confirmación de Contraseña" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <div class="form-group">
+        <%= f.label :current_password, "Contraseña Actual" %> <i>(para confirmar los cambios)</i>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+    </div>
+    <div align="right" class="col-sm-3" style="align-self: end;">
+      <%= f.submit "Actualizar Datos", class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<hr>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<h3>Cancelar mi cuenta</h3>
 
-<%= link_to "Back", :back %>
+<%= button_to "Eliminar cuenta", registration_path(resource_name), data: { confirm: "¿Estás seguro de querer eliminar tu cuenta?" }, method: :delete, class: "btn btn-danger" %>
+
+<%= link_to "Atrás", :back %>

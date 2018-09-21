@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :roles, through: :user_roles
   has_many :phones
 
+  validates_presence_of :id_card, :first_name, :last_name, :email
+
   def has_role?(role_name)
     roles.any? {|r| r.name == role_name.to_s}
   end

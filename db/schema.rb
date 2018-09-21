@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_224040) do
+ActiveRecord::Schema.define(version: 2018_09_20_234854) do
 
   create_table "phone_types", force: :cascade do |t|
     t.string "type"
@@ -51,6 +51,10 @@ ActiveRecord::Schema.define(version: 2018_09_20_224040) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "id_card"
+    t.string "first_name"
+    t.string "middle_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
