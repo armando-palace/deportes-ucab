@@ -20,8 +20,11 @@
       <div class="card-body">
         <h5 class="card-title"><b>Datos Deportivos</b></h5>
         <p class="card-text">
+          <b>Deportes que practicas:</b>
+        </p>
+        <p class="card-text">
           <b>¿Delegado?:</b>
-          <%= current_user.has_role?("delegate")? "Sí" : "No" %>
+          <%= current_user.has_role?("delegate") ? "Sí" : "No" %>
         </p>
       </div>
     </div>
@@ -30,22 +33,14 @@
 
 <br>
 
-<div class="row">
+<div class="row justify-content-center">
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title"><b>Datos Universitarios</b></h5>
-        <p class="card-text"><b>Escuela:</b></p>
+        <p class="card-text"><b>Escuela:</b> <%= current_user.school ? current_user.school.name :  "No has seleccionado una escuela aún" %></p>
         <p class="card-text"><b>Semestre / Año:</b></p>
         <%= link_to "Modificar", schools_path, class: "btn btn-primary" %>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"></h5>
-        <p class="card-text"><b></b></p>
       </div>
     </div>
   </div>
