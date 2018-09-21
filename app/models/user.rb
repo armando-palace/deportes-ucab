@@ -8,7 +8,9 @@ class User < ApplicationRecord
   has_many :roles, through: :user_roles
   has_many :phones
 
-  validates_presence_of :id_card, :first_name, :last_name, :email
+  belongs_to :school, optional: true
+
+  validates_presence_of :id_card, :first_name, :last_name, :email, on: :update
 
   def full_name
     "#{first_name} #{middle_name} #{last_name}"

@@ -1,0 +1,29 @@
+<h1 align="center">Selecciona tu Escuela</h1>
+
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Escuela</th>
+          <th scope="col">Semestre / Año</th>
+          <th scope="col">Elige tu Escuela</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @schools.all.each do |s| %>
+          <%= form_for s do |f| %>
+            <tr>
+              <td><%= s.name %></td>
+              <td>
+                <%= f.select :period_ids, Period.all.collect { |p| [ p.period_number, p.id ] }, {}, { class: "custom-select", style: "width: auto;" } %>
+              </td>
+              <td><%= f.submit "Seleccionar", class: "btn btn-primary" %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    
+  </div>
+</div>

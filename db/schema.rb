@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_234854) do
+ActiveRecord::Schema.define(version: 2018_09_21_062025) do
+
+  create_table "period_types", force: :cascade do |t|
+    t.boolean "semester"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "periods", force: :cascade do |t|
+    t.string "period_number"
+    t.integer "period_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["period_type_id"], name: "index_periods_on_period_type_id"
+  end
 
   create_table "phone_types", force: :cascade do |t|
     t.string "type"
@@ -29,6 +43,21 @@ ActiveRecord::Schema.define(version: 2018_09_20_234854) do
   end
 
   create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "school_periods", force: :cascade do |t|
+    t.integer "school_id"
+    t.integer "period_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["period_id"], name: "index_school_periods_on_period_id"
+    t.index ["school_id"], name: "index_school_periods_on_school_id"
+  end
+
+  create_table "schools", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,8 +84,12 @@ ActiveRecord::Schema.define(version: 2018_09_20_234854) do
     t.string "first_name"
     t.string "middle_name"
     t.string "last_name"
+    t.integer "period_id"
+    t.integer "school_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["period_id"], name: "index_users_on_period_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["school_id"], name: "index_users_on_school_id"
   end
 
 end

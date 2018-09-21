@@ -6,7 +6,7 @@
       <div class="card-body">
         <h5 class="card-title"><b>Datos Personales</b></h5>
         <p class="card-text"><b>CI:</b> <%= current_user.id_card || "No indicado" %></p>
-        <p class="card-text"><b>Nombre:</b> <%= current_user.full_name || "No indicado" %></p>
+        <p class="card-text"><b>Nombre:</b> <%= current_user.full_name %></p>
         <p class="card-text"><b>Correo:</b> <%= current_user.email %></p>
         <p class="card-text">
           <b>Teléfonos:</b> <%= current_user.phones.first || "No indicado" %>
@@ -37,6 +37,7 @@
         <h5 class="card-title"><b>Datos Universitarios</b></h5>
         <p class="card-text"><b>Escuela:</b></p>
         <p class="card-text"><b>Semestre / Año:</b></p>
+        <%= link_to "Modificar", schools_path, class: "btn btn-primary" %>
       </div>
     </div>
   </div>
