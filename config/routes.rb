@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'welcome#index'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   namespace :admin do
     get 'landing', to: 'landing#index'
