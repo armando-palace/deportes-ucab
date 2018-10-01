@@ -1,3 +1,4 @@
+# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
   root to: 'welcome#index'
 
@@ -9,6 +10,6 @@ Rails.application.routes.draw do
 
   get 'profile', to: 'users#show'
 
-  resources :schools, except: [:new, :create]
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :schools, only: [:edit, :update, :index]
+  resources :sports
 end

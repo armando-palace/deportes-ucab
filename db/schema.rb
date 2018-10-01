@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_21_062025) do
+ActiveRecord::Schema.define(version: 2018_10_01_042649) do
 
   create_table "period_types", force: :cascade do |t|
     t.boolean "semester"
@@ -49,6 +49,12 @@ ActiveRecord::Schema.define(version: 2018_09_21_062025) do
   end
 
   create_table "schools", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sports", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
