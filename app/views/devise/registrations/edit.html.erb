@@ -40,15 +40,13 @@
   </div>
 
   <div class="row">
-    <% i = 1 %>
-    <%= f.fields_for :phones do |pf| %>
+    <%= f.fields_for :phone do |pf| %>
       <div class="col">
         <div class="form-group">
-          <%= pf.label :number, "Teléfono #{i}" %>
+          <%= pf.label :number, "Teléfono" %>
           <%= pf.text_field :number, class: "form-control" %>
         </div>
       </div>
-      <% i += 1 %>
     <% end %>
   </div>
 

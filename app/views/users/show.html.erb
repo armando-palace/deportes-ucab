@@ -9,7 +9,7 @@
         <p class="card-text"><b>Nombre:</b> <%= current_user.full_name %></p>
         <p class="card-text"><b>Correo:</b> <%= current_user.email %></p>
         <p class="card-text">
-          <b>Teléfonos:</b> <%= current_user.phones.first || "No indicado" %>
+          <b>Teléfono:</b> <%= if current_user.phone then current_user.phone.number else "No indicado" end %>
         </p>
         <%= link_to "Modificar", edit_user_registration_path, class: "btn btn-primary" %>
       </div>

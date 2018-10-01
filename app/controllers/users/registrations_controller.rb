@@ -16,13 +16,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    resource.phones.build
+    resource.build_phone unless resource.phone
   end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    resource.phone.destroy if resource.phone
+    super
+  end
 
   # DELETE /resource
   # def destroy
@@ -49,7 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     devise_parameter_sanitizer.permit(
       :account_update, keys: [
-        :id_card, :first_name, :middle_name, :last_name, phones_attributes: [:number]
+        :id_card, :first_name, :middle_name, :last_name, phone_attributes: [:number]
       ]
     )
   end
