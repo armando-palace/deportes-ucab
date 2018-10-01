@@ -25,3 +25,9 @@ phone_types = PhoneType::PHONE_TYPES
 phone_types.each do |pt|
   PhoneType.find_or_create_by!(name: pt)
 end
+
+puts "Sports"
+sports = Sport::SPORTS
+sports.each do |s|
+  Sport.find_or_create_by!(name: s)
+end

@@ -6,33 +6,36 @@
 
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Torneos <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="deportesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Deportes <span class="sr-only">(current)</span>
+          Deportes</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="deportesDropdown">
-          <a class="dropdown-item" href="#">Fútbol</a>
-          <a class="dropdown-item" href="#">Fútbol Sala</a>
-          <a class="dropdown-item" href="#">Básquetbol</a>
-          <a class="dropdown-item" href="#">Vóleibol</a>
-          <a class="dropdown-item" href="#">Béisbol</a>
-          <a class="dropdown-item" href="#">Ping Pong</a>
+          <% Sport.all.each do |s| %>
+            <%= link_to s.name, s, class: "dropdown-item" %>
+          <% end %>
+          <% if can? :manage, Sport %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Agregar", "#", class: "dropdown-item" %>
+          <% end %>
         </div>
       </li>
+      <% if can? :manage, User %>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Jugadores</a>
+        </li>
+      <% end %>
     </ul>
 
     <ul class="navbar-nav">
       <% if user_signed_in? %>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropleft">
           <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= current_user.email %>
           </a>
           <div class="dropdown-menu" aria-labelledby="profileDropdown">
             <%= link_to "Mi Perfil", profile_path, class: "dropdown-item" %>
-            <%= link_to "Solicitudes", "#", class: "dropdown-item" %>
+            <%= link_to "Solicitudes de Registro", "#", class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
             <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
