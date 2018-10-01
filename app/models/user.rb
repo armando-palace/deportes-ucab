@@ -13,6 +13,10 @@ class User < ApplicationRecord
 
   validates_presence_of :id_card, :first_name, :last_name, :email, on: :update
 
+  def all_names
+    "#{first_name} #{middle_name}"
+  end
+
   def full_name
     "#{first_name} #{middle_name} #{last_name}"
   end
