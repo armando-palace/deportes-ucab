@@ -6,7 +6,16 @@
       <div class="card-body">
         <h5 class="card-title"><b>Datos Personales</b></h5>
         <p class="card-text"><b>CI:</b> <%= current_user.id_card || "No indicado" %></p>
-        <p class="card-text"><b>Nombre:</b> <%= current_user.full_name %></p>
+        <p class="card-text">
+          <div class="row">
+            <div class="col">
+              <b>Nombre:</b> <%= current_user.first_name || "No indicado" %>
+            </div>
+            <div class="col">
+              <b>Apellido:</b> <%= current_user.last_name || "No indicado" %>
+            </div>
+          </div>
+        </p>
         <p class="card-text"><b>Correo:</b> <%= current_user.email %></p>
         <p class="card-text">
           <b>Teléfono:</b> <%= if current_user.phone then current_user.phone.number else "No indicado" end %>

@@ -23,8 +23,5 @@ end
 puts "Phone Types"
 phone_types = PhoneType::PHONE_TYPES
 phone_types.each do |pt|
-  # PhoneType.new(type: pt)
-  # PhoneType.create!(type: pt)
   PhoneType.find_or_create_by!(name: pt)
-  # PhoneType.find_or_initialize_by(type: "pt")
 end
