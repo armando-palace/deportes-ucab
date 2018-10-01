@@ -14,6 +14,7 @@
           Deportes <span class="sr-only">(current)</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="deportesDropdown">
+          <a class="dropdown-item" href="#">Fútbol</a>
           <a class="dropdown-item" href="#">Fútbol Sala</a>
           <a class="dropdown-item" href="#">Básquetbol</a>
           <a class="dropdown-item" href="#">Vóleibol</a>
@@ -31,7 +32,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="profileDropdown">
             <%= link_to "Mi Perfil", profile_path, class: "dropdown-item" %>
-            <a class="dropdown-item" href="#">Ajustes</a>
+            <%= link_to "Solicitudes", "#", class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
             <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
