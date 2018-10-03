@@ -13,8 +13,10 @@ Rails.application.routes.draw do
 
   resources :schools, only: [:edit, :update, :index]
   resources :sports do
-    resources :tournaments do
-          resources :teams
-    end
+    resources :tournaments
+  end
+
+  resources :tournaments do
+        resources :teams
   end
 end

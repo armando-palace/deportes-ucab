@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_02_022343) do
+ActiveRecord::Schema.define(version: 2018_10_03_031919) do
 
   create_table "period_types", force: :cascade do |t|
     t.boolean "semester"
@@ -79,6 +79,10 @@ ActiveRecord::Schema.define(version: 2018_10_02_022343) do
     t.string "period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "sport_id"
+    t.index ["sport_id"], name: "index_tournaments_on_sport_id"
+    t.index ["user_id"], name: "index_tournaments_on_user_id"
   end
 
   create_table "user_roles", force: :cascade do |t|

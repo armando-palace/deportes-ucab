@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   before_action :set_tournament, only: [:show, :edit, :update, :destroy]
-  before_action :set_sport, only: [:show, :edit, :update, :destroy]
+  before_action :set_sport
 
   # GET /tournaments
   # GET /tournaments.json
@@ -27,7 +27,7 @@ class TournamentsController < ApplicationController
   def create
     @tournament = current_user.tournaments.new(tournament_params)
     @tournament.sport = @sport
-    puts 'funciona'
+
     if @tournament.save
       redirect_to @tournament.sport, notice: 'Equipo creado correctamente'
     else
@@ -66,11 +66,12 @@ class TournamentsController < ApplicationController
     end
 
     def set_sport
-      @sport = Sport.find(params[:id])
+      @sport = Sport.find(params[:sport_id])
+      puts @sport_id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tournament_params
-      params.require(:tournament).permit(:name, :description, :registration_start_date, :registration_end_date, :period , :sport_id, :team_id)
+      params.require(:tournament).permit(:name, :description, :registration_start_date, :registration_end_date, :period , :sport_id, :team_id, :user_id)
     end
 end
