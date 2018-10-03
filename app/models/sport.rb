@@ -1,4 +1,6 @@
 class Sport < ApplicationRecord
+  has_many :tournaments
+
   SOCCER = "Fútbol"
   INDOOR_FOOTBALL = "Fútbol Sala"
   BASKETBALL = "Básquetbol"

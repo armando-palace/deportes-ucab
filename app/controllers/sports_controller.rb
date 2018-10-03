@@ -7,7 +7,7 @@ class SportsController < ApplicationController
   private
 
     def sport_params
-      params.require(:sport).permit(:name)
+      params.require(:sport).permit(:name, :tournament_id)
     end
 
     def set_sport

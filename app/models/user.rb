@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :user_roles
   has_many :roles, through: :user_roles
+  has_many :user_teams
+  has_many :teams, through: :user_teams
   has_one :phone
   accepts_nested_attributes_for :phone
 
