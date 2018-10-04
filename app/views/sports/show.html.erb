@@ -6,7 +6,12 @@
       <div class="card-body">
         <h5 class="card-title" align= "center"><b>Torneos</b> <%= link_to "Crear", new_sport_tournament_path(@sport) , class: "btn btn-primary btn-sm" %></h5>
       </div>
+      <h1 align="center">Torneos Actuales:</h1>
+      <div class="card-body">
+        <% @tournament.each do |f| %>
+        <h5 class="card-title" align= "center"><%= link_to "#{f.name}", sport_tournament_path(@sport,f.id) , class: "btn btn-primary btn-sm" %></h5>
+        <h5 align="center"><%= f.description   %></h5>
+        <% end %>
+      </div>
     </div>
   </div>
-
-</div>

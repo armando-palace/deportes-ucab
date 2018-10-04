@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
+  before_action :set_sport, except: [:edit, :show]
   before_action :set_tournament, only: [:show, :edit, :update, :destroy]
-  before_action :set_sport
 
   # GET /tournaments
   # GET /tournaments.json
@@ -29,7 +29,7 @@ class TournamentsController < ApplicationController
     @tournament.sport = @sport
 
     if @tournament.save
-      redirect_to @tournament.sport, notice: 'Equipo creado correctamente'
+      redirect_to @tournament.sport, notice: 'Equipo creado correctamente.'
     else
       render :new
     end
@@ -38,36 +38,29 @@ class TournamentsController < ApplicationController
   # PATCH/PUT /tournaments/1
   # PATCH/PUT /tournaments/1.json
   def update
-    respond_to do |format|
       if @tournament.update(tournament_params)
-        format.html { redirect_to @tournament, notice: 'Tournament was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tournament }
+        redirect_to @tournament, notice: 'Torneo editado correctamente.'
       else
-        format.html { render :edit }
-        format.json { render json: @tournament.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
   # DELETE /tournaments/1
   # DELETE /tournaments/1.json
   def destroy
     @tournament.destroy
-    respond_to do |format|
-      format.html { redirect_to tournaments_url, notice: 'Tournament was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+     redirect_to tournaments_url, notice: 'Torneo destruido.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tournament
       @tournament = Tournament.find(params[:id])
+      @sport = @tournament.sport_id
     end
 
     def set_sport
       @sport = Sport.find(params[:sport_id])
-      puts @sport_id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
