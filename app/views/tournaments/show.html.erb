@@ -3,31 +3,44 @@
     <div class="card">
       <div class="card-body" align="center">
         <p>
-          <strong>Name:</strong>
+          <strong>Nombre:</strong>
           <%= @tournament.name %>
         </p>
 
         <p>
-          <strong>Description:</strong>
+          <strong>Descripción:</strong>
           <%= @tournament.description %>
         </p>
 
         <p>
-          <strong>Registration start date:</strong>
+          <strong>Fecha de inicio:</strong>
           <%= @tournament.registration_start_date %>
         </p>
 
         <p>
-          <strong>Registration end date:</strong>
+          <strong>Fecha de finalización:</strong>
           <%= @tournament.registration_end_date %>
         </p>
 
         <p>
-          <strong>Period:</strong>
+          <strong>Período:</strong>
           <%= @tournament.period %>
         </p>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body" align="center">
+        <h5 class="card-title" align= "center"><b>Equipo</b> <%= link_to "Agregar Equipo", new_tournament_team_path(@tournament) , class: "btn btn-primary btn-sm" %></h5>
 
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_tournament_path(@tournament) %> |
-<%= link_to 'Back', :back %>
+<%= link_to 'Editar', edit_tournament_path(@tournament) %> |
+<%= link_to 'Atrás', :back %>

@@ -1,6 +1,7 @@
 class SportsController < ApplicationController
   before_action :set_sport, only: [:show]
   before_action :tournament_search, only: [:show]
+  before_action :authenticate_user!
 
   def show
   end
