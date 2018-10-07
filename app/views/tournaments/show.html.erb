@@ -26,6 +26,8 @@
           <strong>Período:</strong>
           <%= @tournament.period %>
         </p>
+        <%= link_to 'Editar', edit_tournament_path(@tournament) %> |
+        <%= link_to 'Atrás', @tournament.sport%>
       </div>
     </div>
   </div>
@@ -42,5 +44,17 @@
   </div>
 </div>
 
-<%= link_to 'Editar', edit_tournament_path(@tournament) %> |
-<%= link_to 'Atrás', :back %>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+    <% if @team.present? %>
+    <h1 align="center">Equipos Actuales:</h1>
+      <div class="card-body">
+          <% @team.each do |f| %>
+          <h5 class="card-title" align= "center"><%= link_to "#{f.name}", tournament_team_path(@tournament,f.id) , class: "btn btn-primary btn-sm" %></h5>
+          <% end %>
+    <% end %>
+     </div>
+   </div>
+ </div>
+</div>

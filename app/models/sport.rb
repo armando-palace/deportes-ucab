@@ -1,5 +1,5 @@
 class Sport < ApplicationRecord
-  has_many :tournaments
+  has_many :tournaments,  dependent: :destroy
 
   SOCCER = "Fútbol"
   INDOOR_FOOTBALL = "Fútbol Sala"

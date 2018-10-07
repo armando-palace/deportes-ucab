@@ -1,36 +1,37 @@
-<%= form_with(model: team, model: sport, local: true) do |form| %>
-  <% if team.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body" align="center">
+                <%= form_with(model: team,local: true, url: tournament_teams_path(@tournament)) do |form| %>
+                  <% if team.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
 
-      <ul>
-      <% team.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+                      <ul>
+                      <% team.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+
+                  <div class="field">
+                    <%= form.label "Nombre:" %>
+                    <%= form.text_field :name %>
+                  </div>
+
+                  <div class="field">
+                    <%= form.label "Apodo:" %>
+                    <%= form.text_field :nickname %>
+                  </div>
+
+
+
+                  <div class="actions">
+                    <%= form.submit "Procesar" %>
+                  </div>
+                <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :nickname %>
-    <%= form.text_field :nickname %>
-  </div>
-  <div class="field">
-    <%= form.label :tournament %>
-    <%= form.text_field :tournament %>
-  </div>
-
-
-  <div class="field">
-       <%= form.select(:tournament, options_for_select(Team.tournament.map { |u| [u.name, u.description]}) ) if @team.tournament.present? %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

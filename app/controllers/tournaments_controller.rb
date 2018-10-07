@@ -1,6 +1,7 @@
 class TournamentsController < ApplicationController
-  before_action :set_sport, except: [:edit, :show]
+  before_action :set_sport, only: [:new, :create, :destroy]
   before_action :set_tournament, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /tournaments
@@ -57,11 +58,14 @@ class TournamentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_tournament
       @tournament = Tournament.find(params[:id])
-      @sport = @tournament.sport_id
     end
 
     def set_sport
       @sport = Sport.find(params[:sport_id])
+    end
+
+    def set_team
+      @team = Team.where("tournament_id = ?", @tournament.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

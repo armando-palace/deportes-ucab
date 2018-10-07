@@ -1,24 +1,19 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body" align="center">
+            <p>
+              <strong>Nombre del equipo:</strong>
+              <%= @team.name %>
+            </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
-
-<p>
-  <strong>Nickname:</strong>
-  <%= @team.nickname %>
-</p>
-
-<p>
-  <strong>Sport:</strong>
-  <%= @team.sport %>
-</p>
-
-<p>
-  <strong>Tournament:</strong>
-  <%= @team.tournament %>
-</p>
-
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+            <p>
+              <strong>Apodo del equipo:</strong>
+              <%= @team.nickname %>
+            </p>
+            <%= link_to 'Editar', edit_tournament_team_path(@tournament) %> |
+            <%= link_to 'Atrás', @tournament %>
+      </div>
+    </div>
+  </div>
+</div>

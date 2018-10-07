@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
-  before_action :set_sport, only: [:show, :edit, :update, :destroy]
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy]
+  before_action :set_tournament
+  before_action :authenticate_user!
 
   # GET /teams
   # GET /teams.json
@@ -25,11 +25,10 @@ class TeamsController < ApplicationController
 
   def create
     @team = current_user.teams.new(team_params)
-    @team.sport = @sport
     @team.tournament = @tournament
 
     if @team.save
-      redirect_to @team.sport, notice: 'Equipo creado correctamente'
+      redirect_to @team.tournament, notice: 'Equipo creado correctamente'
     else
       render :new
     end
@@ -37,7 +36,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-       redirect_to @team, notice: 'Equipo actualizado correctamente'
+       redirect_to @team.tournament, notice: 'Equipo actualizado correctamente'
     else
        render :edit
     end
@@ -57,14 +56,12 @@ class TeamsController < ApplicationController
     end
 
     def set_tournament
-      @tournament = Tournament.find(params[:id])
+      @tournament = Tournament.find(params[:tournament_id])
     end
 
-    def set_sport
-      @sport = Sport.find(params[:id])
-    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name, :nickname, :tournament_id, :team_id)
+      params.require(:team).permit(:name, :nickname, :tournament_id, :user_id)
     end
 end

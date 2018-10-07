@@ -1,42 +1,51 @@
-<%= form_with(model: tournament, local: true, url: sport_tournaments_path(@sport)) do |form| %>
-  <% if tournament.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(tournament.errors.count, "error") %> No se pudo crear el torneo por estos motivos:</h2>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body" align="center">
 
-      <ul>
-      <% tournament.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+                  <%= form_with(model: tournament, local: true, url: sport_tournaments_path(@sport)) do |form| %>
+                    <% if tournament.errors.any? %>
+                      <div id="error_explanation">
+                        <h2><%= pluralize(tournament.errors.count, "error") %> No se pudo crear el torneo por estos motivos:</h2>
 
-  <div class="field">
-    <%= form.label "Nombre:" %>
-    <%= form.text_field :name %>
-  </div>
+                        <ul>
+                        <% tournament.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
 
-  <div class="field">
-    <%= form.label "Descripción:" %>
-    <%= form.text_field :description %>
-  </div>
+                    <div class="field">
+                      <%= form.label "Nombre:" %>
+                      <%= form.text_field :name %>
+                    </div>
 
-  <div class="field">
-    <%= form.label "Fecha de Inicio:" %>
-    <%= form.date_select :registration_start_date %>
-  </div>
+                    <div class="field">
+                      <%= form.label "Descripción:" %>
+                      <%= form.text_field :description %>
+                    </div>
 
-  <div class="field">
-    <%= form.label "Fecha de Finalización:" %>
-    <%= form.date_select :registration_end_date %>
-  </div>
+                    <div class="field">
+                      <%= form.label "Fecha de Inicio:" %>
+                      <%= form.date_select :registration_start_date %>
+                    </div>
 
-  <div class="field">
-    <%= form.label "Período:" %>
-    <%= form.text_field :period %>
-  </div>
+                    <div class="field">
+                      <%= form.label "Fecha de Finalización:" %>
+                      <%= form.date_select :registration_end_date %>
+                    </div>
 
-  <div class="actions">
-    <%= form.submit "CREAR" %>
-  </div>
-<% end %>
+                    <div class="field">
+                      <%= form.label "Período:" %>
+                      <%= form.text_field :period %>
+                    </div>
+
+                    <div class="actions">
+                      <%= form.submit "CREAR" %>
+                    </div>
+                  <% end %>
+          </div>
+        </div>
+     </div>
+ </div>
