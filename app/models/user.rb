@@ -32,15 +32,12 @@ class User < ApplicationRecord
     roles.any? {|r| r.name == role_name.to_s}
   end
 
-  def is_super_admin?
-    has_role?(:super_admin)
-  end
-
-  def is_only_admin?
+  def is_admin?
     has_role?(:admin)
   end
 
-  def is_admin?
-    has_role?(:admin) || has_role?(:super_admin)
+  def is_delegate?
+    has_role?(:delegate)
   end
+
 end
