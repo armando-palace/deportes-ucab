@@ -13,12 +13,16 @@ class Admin::PlayersController < ApplicationController
     end
   end
 
+  def index
+    @players = Player.all
+  end
+
   private
 
     def player_params
       params.require(:player).permit(
         :id_card, :first_name, :middle_name, :last_name,
-        :school_id, :period_id, :team_id
+        :school_id, :period_id, :team_id, :user_id
       )
     end
 end

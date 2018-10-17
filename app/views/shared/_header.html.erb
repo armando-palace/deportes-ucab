@@ -20,9 +20,9 @@
           <% end %>
         </div>
       </li>
-      <% if can? :manage, User %>
+      <% if can? :manage, Player %>
         <li class="nav-item">
-          <a class="nav-link" href="#">Jugadores</a>
+          <%= link_to "Jugadores", admin_players_path, class: "nav-link" %>
         </li>
       <% end %>
     </ul>

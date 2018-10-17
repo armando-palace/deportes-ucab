@@ -8,9 +8,7 @@ class User < ApplicationRecord
   has_many :roles, through: :user_roles
   has_many :teams
   has_many :tournaments
-
-  # has_one :phone
-  # accepts_nested_attributes_for :phone
+  has_many :players
 
   # belongs_to :school, optional: true
   # belongs_to :period, optional: true

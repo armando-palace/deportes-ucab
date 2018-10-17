@@ -1,0 +1,11 @@
+<h1>Jugadores inscritos por ti</h1>
+
+<% unless @players.empty? %>
+  <% @players.each do |p| %>
+    <h3><%= p.name %></h3>
+  <% end %>
+<% else %>
+  <h3>Sin jugadores inscritos aún</h3>
+<% end %>
+
+<%= link_to "Inscribir Jugadores", new_admin_player_path %>
