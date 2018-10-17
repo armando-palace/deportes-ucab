@@ -7,9 +7,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'landing', to: 'landing#index'
-  end
 
-  resources :users
+    resources :players
+  end
 
   get 'profile', to: 'users#show'
 

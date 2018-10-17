@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_16_213851) do
+ActiveRecord::Schema.define(version: 2018_10_17_193509) do
 
   create_table "period_types", force: :cascade do |t|
     t.boolean "semester"
@@ -42,6 +42,19 @@ ActiveRecord::Schema.define(version: 2018_10_16_213851) do
     t.index ["user_id"], name: "index_phones_on_user_id"
   end
 
+  create_table "players", force: :cascade do |t|
+    t.string "id_card"
+    t.string "first_name"
+    t.string "middle_name"
+    t.string "last_name"
+    t.integer "school_id"
+    t.integer "period_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["period_id"], name: "index_players_on_period_id"
+    t.index ["school_id"], name: "index_players_on_school_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -60,6 +73,18 @@ ActiveRecord::Schema.define(version: 2018_10_16_213851) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "t_shirts", force: :cascade do |t|
+    t.integer "dorsal_number"
+    t.integer "player_id"
+    t.integer "team_id"
+    t.integer "tournament_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_t_shirts_on_player_id"
+    t.index ["team_id"], name: "index_t_shirts_on_team_id"
+    t.index ["tournament_id"], name: "index_t_shirts_on_tournament_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.string "nickname"
@@ -67,8 +92,10 @@ ActiveRecord::Schema.define(version: 2018_10_16_213851) do
     t.integer "tournament_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["sport_id"], name: "index_teams_on_sport_id"
     t.index ["tournament_id"], name: "index_teams_on_tournament_id"
+    t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
   create_table "tournaments", force: :cascade do |t|
@@ -94,25 +121,6 @@ ActiveRecord::Schema.define(version: 2018_10_16_213851) do
     t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
-  create_table "user_teams", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "number"
-    t.index ["team_id"], name: "index_user_teams_on_team_id"
-    t.index ["user_id"], name: "index_user_teams_on_user_id"
-  end
-
-  create_table "user_tournaments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "tournament_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["tournament_id"], name: "index_user_tournaments_on_tournament_id"
-    t.index ["user_id"], name: "index_user_tournaments_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -121,16 +129,8 @@ ActiveRecord::Schema.define(version: 2018_10_16_213851) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "id_card"
-    t.string "first_name"
-    t.string "middle_name"
-    t.string "last_name"
-    t.integer "school_id"
-    t.integer "period_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["period_id"], name: "index_users_on_period_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["school_id"], name: "index_users_on_school_id"
   end
 
 end
