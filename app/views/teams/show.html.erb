@@ -17,7 +17,17 @@
 
         <br><br>
 
-        <%= link_to "Inscribir Jugadores", new_admin_player_path, class: "btn btn-primary" %>
+        <h3>Jugadores</h3>
+
+        <% unless @team.t_shirts.empty? %>
+          <% @team.t_shirts.each do |ts| %>
+            <h4><%= ts.player.name %></h4>
+          <% end %>
+        <% else %>
+          <h4>No hay jugadores en este equipo aún.</h4>
+        <% end %>
+
+        <%#= link_to "Inscribir Jugadores en #{@team.name}", new_admin_player_path, class: "btn btn-primary" %>
       </div>
     </div>
   </div>
