@@ -16,7 +16,7 @@ class User < ApplicationRecord
   belongs_to :school, optional: true
   belongs_to :period, optional: true
 
-  validates_presence_of :id_card, :first_name, :last_name, :email, on: :update
+  validates_presence_of :id_card, :first_name, :last_name, :email, on: [:update]
 
   def all_names
     "#{first_name} #{middle_name}"

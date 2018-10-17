@@ -3,25 +3,25 @@
     <div class="col">
       <div class="form-group">
         <%= f.label :id_card, "Cédula de Identidad" %>
-        <%= f.text_field :id_card, class: "form-control", placeholder: "V-12.345.678" %>
+        <%= f.text_field :id_card, class: "form-control", placeholder: "Ej.: V-12.345.678" %>
       </div>
     </div>
     <div class="col">
       <div class="form-group">
         <%= f.label :first_name, "Primer Nombre" %>
-        <%= f.text_field :first_name, class: "form-control", placeholder: "Juan" %>
+        <%= f.text_field :first_name, class: "form-control", placeholder: "Ej.: Juan" %>
       </div>
     </div>
     <div class="col">
       <div class="form-group">
         <%= f.label :middle_name, "Segundo Nombre" %>
-        <%= f.text_field :middle_name, class: "form-control", placeholder: "Pablo" %>
+        <%= f.text_field :middle_name, class: "form-control", placeholder: "Ej.: Pablo" %>
       </div>
     </div>
     <div class="col">
       <div class="form-group">
         <%= f.label :last_name, "Apellido" %>
-        <%= f.text_field :last_name, class: "form-control", placeholder: "Pérez" %>
+        <%= f.text_field :last_name, class: "form-control", placeholder: "Ej.: Pérez" %>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
     <div class="col">
       <div class="form-group">
         <%= f.label :dorsal_number, "Número de Dorsal" %>
-        <%= f.number_field :dorsal_number, class: "form-control", placeholder: "Pablo" %>
+        <%= f.number_field :dorsal_number, class: "form-control", placeholder: "Ej.: 10" %>
       </div>
     </div>
     <div class="col">
@@ -44,6 +44,12 @@
         <%= f.label :period, "Año / Semestre" %>
         <%= f.select :period_id, Period.all.collect { |p| [ p.period_number, p.id ] }, {}, class: "form-control" %>
       </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <%= f.submit "Registrar Jugador", class: "btn btn-primary" %>
     </div>
   </div>
 <% end %>
