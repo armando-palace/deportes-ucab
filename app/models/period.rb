@@ -1,6 +1,6 @@
 class Period < ApplicationRecord
   belongs_to :period_type
-  belongs_to :user
+  has_many :users
 
   period_numbers = []
 

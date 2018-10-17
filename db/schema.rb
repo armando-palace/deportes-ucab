@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_07_165121) do
+ActiveRecord::Schema.define(version: 2018_10_17_022954) do
 
   create_table "period_types", force: :cascade do |t|
     t.boolean "semester"
@@ -117,7 +117,9 @@ ActiveRecord::Schema.define(version: 2018_10_07_165121) do
     t.string "middle_name"
     t.string "last_name"
     t.integer "school_id"
+    t.integer "period_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["period_id"], name: "index_users_on_period_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["school_id"], name: "index_users_on_school_id"
   end

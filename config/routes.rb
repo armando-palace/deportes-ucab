@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     get 'landing', to: 'landing#index'
   end
 
+  resources :users
+
   get 'profile', to: 'users#show'
 
   resources :schools, only: [:edit, :update, :index]
@@ -17,6 +19,6 @@ Rails.application.routes.draw do
   end
 
   resources :tournaments do
-        resources :teams
+    resources :teams
   end
 end

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  attr_accessor :dorsal_number
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -13,6 +14,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :phone
 
   belongs_to :school, optional: true
+  belongs_to :period, optional: true
 
   validates_presence_of :id_card, :first_name, :last_name, :email, on: :update
 
