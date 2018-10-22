@@ -16,11 +16,12 @@
     <div class="card">
       <div class="card-body">
         <% if @tournament.present? %>
-        <h1 align="center">Torneos Actuales:</h1>
-        <div class="card-body">
-          <% @tournament.each do |f| %>
-          <h5 class="card-title" align= "center"><%= link_to "#{f.name}", sport_tournament_path(@sport,f.id) , class: "btn btn-primary btn-sm" %></h5>
-          <% end %>
+          <h1 align="center">Torneos Actuales</h1>
+          <div class="card-body">
+            <% @tournament.each do |f| %>
+              <h5 class="card-title" align= "center"><%= link_to "#{f.name}", sport_tournament_path(@sport,f.id) , class: "btn btn-primary btn-sm" %></h5>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 <% unless @players.empty? %>
   <% @players.each do |p| %>
-    <h3><%= p.name %></h3>
+    <h3><%= link_to p.name, [:admin, p] %></h3>
   <% end %>
 <% else %>
   <h3>Sin jugadores inscritos aún</h3>

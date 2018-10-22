@@ -1,0 +1,22 @@
+<h1 align="center">Usuarios</h1>
+
+<div class="row justify-content-sm-center">
+  <div class="col-sm-6">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Email</th>
+          <th scope="col" style="text-align: right;"><%= link_to "Crear Usuario", class: "btn btn-primary" %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <% @users.each do |user| %>
+            <td colspan="2"><%= user.email %></td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

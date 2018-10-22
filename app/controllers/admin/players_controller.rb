@@ -1,4 +1,6 @@
 class Admin::PlayersController < ApplicationController
+  before_action :set_player, only: [:show]
+
   def new
     @player = Player.new
     @player.t_shirts.build
@@ -19,6 +21,10 @@ class Admin::PlayersController < ApplicationController
   end
 
   private
+
+    def set_player
+      @player = Player.find(params[:id])
+    end
 
     def player_params
       params.require(:player).permit(

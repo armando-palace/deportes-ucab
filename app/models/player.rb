@@ -6,7 +6,8 @@ class Player < ApplicationRecord
   belongs_to :user
 
   has_many :t_shirts
-  has_many :teams, through: :t_shirts
+  has_many :player_teams
+  has_many :teams, through: :player_teams
 
   accepts_nested_attributes_for :t_shirts, allow_destroy: true
 

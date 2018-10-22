@@ -25,6 +25,11 @@
           <%= link_to "Jugadores", admin_players_path, class: "nav-link" %>
         </li>
       <% end %>
+      <% if can? :manage, User %>
+        <li class="nav-item">
+          <%= link_to "Usuarios", admin_users_path, class: "nav-link" %>
+        </li>
+      <% end %>
     </ul>
 
     <ul class="navbar-nav">
@@ -34,7 +39,7 @@
             <%= current_user.email %>
           </a>
           <div class="dropdown-menu" aria-labelledby="profileDropdown">
-            <%= link_to "Mi Perfil", profile_path, class: "dropdown-item" %>
+            <%= link_to "Mi Perfil", admin_profile_path, class: "dropdown-item" %>
             <% if can? :manage, User %>
             <%= link_to "Crear Delegado", "#", class: "dropdown-item" %>
             <% end %>

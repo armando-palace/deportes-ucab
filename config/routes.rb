@@ -9,9 +9,12 @@ Rails.application.routes.draw do
     get 'landing', to: 'landing#index'
 
     resources :players
+    resources :users
+    get 'profile', to: 'users#profile'
   end
 
-  get 'profile', to: 'users#show'
+  # resources :players
+  # get 'profile', to: 'admin/users#profile'
 
   resources :schools, only: [:edit, :update, :index]
   resources :sports do
