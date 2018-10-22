@@ -1,49 +1,14 @@
-<h1 align= "center">Editar Equipo</h1>
+<%= render 'shared/errors', obj: @team %>
+
+<h1 align="center">Editar Equipo</h1>
+
+<%= form_with(model: @team, local: true, url: tournament_team_path(@tournament)) do |form| %>
+  <%#= render 'form', team: @team, sport: @sport %>
+  <%= render partial: 'form', team: @team, sport: @sport, locals: { form: form } %>
+<% end %>
 
 <div class="row">
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-body" align="center">
-                <%= form_with(model: @team,local: true, url: tournament_team_path(@tournament)) do |form| %>
-                  <% if @team.errors.any? %>
-                    <div id="error_explanation">
-                      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
-
-                      <ul>
-                      <% @team.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                      <% end %>
-                      </ul>
-                    </div>
-                  <% end %>
-
-                  <div class="field">
-                    <%= form.label "Nombre:" %>
-                    <%= form.text_field :name %>
-                  </div>
-
-                  <div class="field">
-                    <%= form.label "Apodo:" %>
-                    <%= form.text_field :nickname %>
-                  </div>
-
-
-
-                  <div class="actions">
-                    <%= form.submit "Procesar" %>
-                  </div>
-                <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-body" align="center">
-          <%= link_to 'Atrás', tournament_team_path %>
-      </div>
-    </div>
+  <div class="col">
+    <%= link_to "Atrás", :back %>
   </div>
 </div>

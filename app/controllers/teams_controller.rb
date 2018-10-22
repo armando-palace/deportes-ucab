@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_players, only: [:new, :edit]
   before_action :set_tournament
   before_action :authenticate_user!
 
@@ -11,17 +12,15 @@ class TeamsController < ApplicationController
 
   # GET /teams/1
   # GET /teams/1.json
-  def show
-  end
-
+  # def show
+  # end
 
   def new
     @team = Team.new
   end
 
-
-  def edit
-  end
+  # def edit
+  # end
 
   def create
     @team = current_user.teams.new(team_params)
@@ -36,9 +35,9 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-       redirect_to @team.tournament, notice: 'Equipo actualizado correctamente'
+      redirect_to @team.tournament, notice: 'Equipo actualizado correctamente'
     else
-       render :edit
+      render :edit
     end
 
   end
@@ -50,7 +49,6 @@ class TeamsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_team
       @team = Team.find(params[:id])
     end
@@ -59,9 +57,13 @@ class TeamsController < ApplicationController
       @tournament = Tournament.find(params[:tournament_id])
     end
 
+    def set_players
+      @players = current_user.players
+    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name, :nickname, :tournament_id, :user_id)
+      params.require(:team).permit(
+        :name, :nickname, :tournament_id, :user_id, player_ids: []
+      )
     end
 end

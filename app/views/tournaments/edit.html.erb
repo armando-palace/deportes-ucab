@@ -4,59 +4,59 @@
   <div class="col-sm-12">
     <div class="card">
       <div class="card-body" align="center">
-                <%= form_with(model: @tournament, local: true, url: sport_tournament_path(@tournament)) do |form| %>
-                  <% if @tournament.errors.any? %>
-                    <div id="error_explanation">
-                      <h2><%= pluralize(tournament.errors.count, "error") %> No se pudo crear el torneo por estos motivos:</h2>
+        <%= form_with(model: @tournament, local: true, url: sport_tournament_path(@tournament)) do |form| %>
+          <% if @tournament.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(tournament.errors.count, "error") %> No se pudo crear el torneo por estos motivos:</h2>
 
-                      <ul>
-                      <% @tournament.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                      <% end %>
-                      </ul>
-                    </div>
-                  <% end %>
-
-                  <div class="field">
-                    <%= form.label "Nombre:" %>
-                    <%= form.text_field :name %>
-                  </div>
-
-                  <div class="field">
-                    <%= form.label "Descripción:" %>
-                    <%= form.text_field :description %>
-                  </div>
-
-                  <div class="field">
-                    <%= form.label "Fecha de Inicio:" %>
-                    <%= form.date_select :registration_start_date %>
-                  </div>
-
-                  <div class="field">
-                    <%= form.label "Fecha de Finalización:" %>
-                    <%= form.date_select :registration_end_date %>
-                  </div>
-
-                  <div class="field">
-                    <%= form.label "Período:" %>
-                    <%= form.text_field :period %>
-                  </div>
-
-                  <div class="actions">
-                    <%= form.submit "Modificar"%>
-                  </div>
-                <% end %>
-              </div>
+              <ul>
+              <% @tournament.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
             </div>
-         </div>
-     </div>
+          <% end %>
 
-<div class="row">
-    <div class="col-sm-12">
-      <div class="card">
-        <div class="card-body" align="center">
-            <%= link_to 'Atrás', @tournament %>
-        </div>
+          <div class="field">
+            <%= form.label "Nombre:" %>
+            <%= form.text_field :name %>
+          </div>
+
+          <div class="field">
+            <%= form.label "Descripción:" %>
+            <%= form.text_field :description %>
+          </div>
+
+          <div class="field">
+            <%= form.label "Fecha de Inicio:" %>
+            <%= form.date_select :registration_start_date %>
+          </div>
+
+          <div class="field">
+            <%= form.label "Fecha de Finalización:" %>
+            <%= form.date_select :registration_end_date %>
+          </div>
+
+          <div class="field">
+            <%= form.label "Período:" %>
+            <%= form.text_field :period %>
+          </div>
+
+          <div class="actions">
+            <%= form.submit "Modificar"%>
+          </div>
+        <% end %>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body" align="center">
+        <%= link_to 'Atrás', @tournament %>
+      </div>
+    </div>
+  </div>
 </div>

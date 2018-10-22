@@ -1,12 +1,14 @@
-<h1 align= "center">Equipo Nuevo:</h1>
+<%= render 'shared/errors', obj: @team %>
 
-<%= render 'form', team: @team, sport: @sport %>
+<h1 align="center">Equipo Nuevo:</h1>
+
+<%= form_with(model: @team, local: true, url: tournament_teams_path(@tournament)) do |form| %>
+  <%#= render 'form', team: @team, sport: @sport %>
+  <%= render partial: 'form', locals: { form: form } %>
+<% end %>
+
 <div class="row">
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-body" align="center">
-            <%= link_to 'Atrás', :back %>
-      </div>
-    </div>
+  <div class="col">
+    <%= link_to "Atrás", :back %>
   </div>
 </div>

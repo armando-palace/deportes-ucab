@@ -1,37 +1,24 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-body" align="center">
-                <%= form_with(model: team,local: true, url: tournament_teams_path(@tournament)) do |form| %>
-                  <% if team.errors.any? %>
-                    <div id="error_explanation">
-                      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+<div class="field">
+  <%= form.label "Nombre:" %>
+  <%= form.text_field :name %>
+</div>
 
-                      <ul>
-                      <% team.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                      <% end %>
-                      </ul>
-                    </div>
-                  <% end %>
+<div class="field">
+  <%= form.label "Apodo:" %>
+  <%= form.text_field :nickname %>
+</div>
 
-                  <div class="field">
-                    <%= form.label "Nombre:" %>
-                    <%= form.text_field :name %>
-                  </div>
+<div class="field">
+  <legend>Jugadores a inscribir</legend>
+  <% @players.each do |player| %>
+    <label>
+      <%= check_box_tag "team[player_ids][]", player.id %>
+      <%= player.name %>
+    </label>
+    <br>
+  <% end %>
+</div>
 
-                  <div class="field">
-                    <%= form.label "Apodo:" %>
-                    <%= form.text_field :nickname %>
-                  </div>
-
-
-
-                  <div class="actions">
-                    <%= form.submit "Procesar" %>
-                  </div>
-                <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="actions">
+  <%= form.submit "Procesar" %>
+</div>

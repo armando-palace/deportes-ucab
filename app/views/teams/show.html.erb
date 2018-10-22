@@ -19,9 +19,9 @@
 
         <h3>Jugadores</h3>
 
-        <% unless @team.t_shirts.empty? %>
-          <% @team.t_shirts.each do |ts| %>
-            <h4><%= ts.player.name %></h4>
+        <% unless @team.players.empty? %>
+          <% @team.players.each do |p| %>
+            <h4><%= p.name %></h4>
           <% end %>
         <% else %>
           <h4>No hay jugadores en este equipo aún.</h4>
