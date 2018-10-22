@@ -1,11 +1,32 @@
-<h1>Jugadores inscritos por ti</h1>
+<h1 align="center">Jugadores</h1>
 
-<% unless @players.empty? %>
-  <% @players.each do |p| %>
-    <h3><%= link_to p.name, [:admin, p] %></h3>
-  <% end %>
-<% else %>
-  <h3>Sin jugadores inscritos aún</h3>
-<% end %>
+<div class="row justify-content-sm-center">
+  <div class="col-sm-10">
+    <% unless @players.empty? %>
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Cédula de Identidad</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Segundo Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col" style="text-align: right;"><%= link_to "Registrar Jugador", new_admin_player_path, class: "btn btn-primary btn-sm" %></th>
+          </tr>
+        </thead>
 
-<%= link_to "Inscribir Jugadores", new_admin_player_path %>
+        <tbody>
+          <% @players.each do |player| %>
+            <tr>
+              <td><%= player.id_card %></td>
+              <td><%= link_to player.first_name, [:admin, player] %></td>
+              <td><%= player.middle_name %></td>
+              <td colspan="2"><%= player.last_name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <h3>Sin jugadores inscritos aún</h3>
+    <% end %>
+  </div>
+</div>
