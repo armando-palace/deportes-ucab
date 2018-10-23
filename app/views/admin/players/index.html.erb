@@ -20,7 +20,13 @@
               <td><%= player.id_card %></td>
               <td><%= link_to player.first_name, [:admin, player] %></td>
               <td><%= player.middle_name %></td>
-              <td colspan="2"><%= player.last_name %></td>
+              <td><%= player.last_name %></td>
+              <td style="text-align: right;">
+                <div class="btn-group" role="group" aria-label="User management">
+                  <%= link_to "Editar", edit_admin_player_path(player), class: "btn btn-warning btn-sm", type: "button" %>
+                  <%= link_to "Eliminar", admin_player_path(player), method: :delete, data: { confirm: "¿Seguro que quieres eliminar a este jugador?" }, class: "btn btn-danger btn-sm", type: "button" %>
+                </div>
+              </td>
             </tr>
           <% end %>
         </tbody>

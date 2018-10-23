@@ -1,5 +1,5 @@
 class Admin::PlayersController < ApplicationController
-  before_action :set_player, only: [:show]
+  before_action :set_player, only: [:edit, :update, :show, :destroy]
 
   def new
     @player = Player.new
@@ -16,8 +16,24 @@ class Admin::PlayersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @player.update(player_params)
+      redirect_to [:admin, @player]
+    else
+      render :edit
+    end
+  end
+
   def index
     @players = Player.all
+  end
+
+  def destroy
+    @player.destroy
+    redirect_to admin_players_path
   end
 
   private
