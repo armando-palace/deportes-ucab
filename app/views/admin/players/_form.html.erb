@@ -17,12 +17,29 @@
       <%= f.text_field :middle_name, class: "form-control", placeholder: "Ej.: Pablo" %>
     </div>
   </div>
+</div>
+
+<div class="row">
   <div class="col">
     <div class="form-group">
       <%= f.label :last_name, "Apellido" %>
       <%= f.text_field :last_name, class: "form-control", placeholder: "Ej.: Pérez" %>
     </div>
   </div>
+  <%= f.fields_for :phone do |pf| %>
+    <div class="col">
+      <div class="form-group">
+        <%= pf.label :number, "Teléfono" %>
+        <%= pf.text_field :number, class: "form-control", placeholder: "Ej.: 0424-123456" %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= pf.label :phone_type_id, "Tipo de Teléfono" %>
+        <%= pf.select :phone_type_id, PhoneType.all.collect { |pt| [ pt.name, pt.id ] }, {}, class: "form-control" %>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <div class="row">

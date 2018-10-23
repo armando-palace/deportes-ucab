@@ -3,6 +3,7 @@ class Admin::PlayersController < ApplicationController
 
   def new
     @player = Player.new
+    @player.build_phone
     @player.t_shirts.build
   end
 
@@ -46,6 +47,7 @@ class Admin::PlayersController < ApplicationController
       params.require(:player).permit(
         :id_card, :first_name, :middle_name, :last_name,
         :school_id, :period_id, :team_id, :user_id,
+        phone_attributes: [:number, :phone_type_id],
         t_shirts_attributes: [:dorsal_number]
       )
     end

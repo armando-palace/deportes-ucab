@@ -1,9 +1,9 @@
 class PhoneType < ApplicationRecord
   has_many :phones
 
-  MOBILE = 'Mobile'
-  HOME   = 'Home'
-  WORK   = 'Work'
+  MOBILE = 'Móvil'
+  HOME   = 'Casa'
+  WORK   = 'Trabajo'
 
   PHONE_TYPES = [
     MOBILE,

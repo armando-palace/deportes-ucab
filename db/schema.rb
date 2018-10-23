@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_18_022012) do
+ActiveRecord::Schema.define(version: 2018_10_23_234637) do
 
   create_table "period_types", force: :cascade do |t|
     t.boolean "semester"
@@ -35,11 +35,11 @@ ActiveRecord::Schema.define(version: 2018_10_18_022012) do
   create_table "phones", force: :cascade do |t|
     t.string "number"
     t.integer "phone_type_id"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "player_id"
     t.index ["phone_type_id"], name: "index_phones_on_phone_type_id"
-    t.index ["user_id"], name: "index_phones_on_user_id"
+    t.index ["player_id"], name: "index_phones_on_player_id"
   end
 
   create_table "player_teams", force: :cascade do |t|

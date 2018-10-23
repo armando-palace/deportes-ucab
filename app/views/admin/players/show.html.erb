@@ -11,7 +11,7 @@
             <p class="card-text"><b>Primer Nombre:</b> <%= @player.first_name %></p>
             <p class="card-text"><b>Segundo Nombre:</b> <%= @player.middle_name || "No indicado" %></p>
             <p class="card-text"><b>Apellido:</b> <%= @player.last_name %></p>
-            <p class="card-text"><b>Teléfono:</b> <%= "Por definir" %></p>
+            <p class="card-text"><b>Teléfono:</b> <%= "#{@player.phone.number} (#{@player.phone.phone_type.name})" %></p>
           </div>
         </div>
       </div>
