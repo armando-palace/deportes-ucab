@@ -6,6 +6,10 @@ class SportsController < ApplicationController
   def show
   end
 
+  def index
+    @sports = Sport.all
+  end
+
   private
 
     def sport_params
