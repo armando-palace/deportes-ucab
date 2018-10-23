@@ -3,13 +3,19 @@ class Admin::UsersController < ApplicationController
 
   def new
     @user = User.new
+    @roles = Role.all
   end
 
-  # def create
-  #   @user = User.new(user_params)
+  def create
+    @user = User.new(user_params)
 
-  #   redirect_to new_user_path
-  # end
+    if @user.save
+      redirect_to [:admin, @user]
+    else
+      @roles = Role.all
+      render :new
+    end
+  end
 
   def show
     @user = User.find(params[:id])
@@ -19,15 +25,11 @@ class Admin::UsersController < ApplicationController
     @users = User.all
   end
 
-  def profile
-  end
-
   private
 
     def user_params
       params.require(:user).permit(
-        :id_card, :first_name, :middle_name, :last_name,
-        :dorsal_number, :school, :period
+        :email, :password, :password_confirmation, role_ids: []
       )
     end
 end

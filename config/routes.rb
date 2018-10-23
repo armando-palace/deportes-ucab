@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
     resources :players
     resources :users
-    get 'profile', to: 'users#profile'
+    # get 'profile', to: 'users#profile'
   end
 
   # resources :players
