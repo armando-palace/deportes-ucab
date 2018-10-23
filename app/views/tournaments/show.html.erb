@@ -1,60 +1,57 @@
-<div class="row">
-  <div class="col-sm-12">
+<h1 align="center"><%= @tournament.name %></h1>
+
+<div class="row justify-content-sm-center">
+  <div class="col-sm-6">
     <div class="card">
-      <div class="card-body" align="center">
-        <p>
-          <strong>Nombre:</strong>
-          <%= @tournament.name %>
-        </p>
-
-        <p>
-          <strong>Descripción:</strong>
-          <%= @tournament.description %>
-        </p>
-
-        <p>
-          <strong>Fecha de inicio:</strong>
-          <%= @tournament.registration_start_date %>
-        </p>
-
-        <p>
-          <strong>Fecha de finalización:</strong>
-          <%= @tournament.registration_end_date %>
-        </p>
-
-        <p>
-          <strong>Período:</strong>
-          <%= @tournament.period %>
-        </p>
-        <%= link_to 'Editar', edit_tournament_path(@tournament) %> |
-        <%= link_to 'Atrás', @tournament.sport%>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-body" align="center">
-        <h5 class="card-title" align= "center"><b>Equipo</b> <%= link_to "Agregar Equipo", new_tournament_team_path(@tournament) , class: "btn btn-primary btn-sm" %></h5>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card">
-    <% if @team.present? %>
-    <h1 align="center">Equipos Actuales:</h1>
       <div class="card-body">
-          <% @team.each do |f| %>
-          <h5 class="card-title" align= "center"><%= link_to "#{f.name}", tournament_team_path(@tournament,f.id) , class: "btn btn-primary btn-sm" %></h5>
-          <% end %>
-    <% end %>
-     </div>
-   </div>
- </div>
+        <h3 align="center" class="card-title">Información</h3>
+        <p class="card-text"><b>Deporte:</b> <%= @tournament.sport.name %></p>
+        <p class="card-text"><b>Descripción:</b> <%= @tournament.description %></p>
+        <p class="card-text"><b>Fecha de inicio:</b> <%= @tournament.registration_start_date %></p>
+        <p class="card-text"><b>Fecha de cierre:</b> <%= @tournament.registration_end_date %></p>
+        <p class="card-text"><b>Período:</b> <%= @tournament.period %></p>
+        
+        <div class="btn-group" role="group">
+          <%= link_to "Editar", edit_tournament_path(@tournament), class: "btn btn-warning btn-sm card-link", type: "button" %>
+          <%= link_to "Eliminar", @tournament, method: :delete, data: { confirm: "¿Seguro que quieres eliminar este torneo?" }, class: "btn btn-danger btn-sm", type: "button" %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<hr>
+
+<h2 align="center">Equipos de <%= @tournament.name %></h2>
+
+<table class="table" style="text-align: center;">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apodo</th>
+      <th scope="col">Cantidad de Jugadores</th>
+      <th scope="col">Creador</th>
+      <th scope="col" style="text-align: right;">
+        <%= link_to "Agregar Equipo", new_tournament_team_path(@tournament), class: "btn btn-primary btn-sm" %>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tournament.teams.each do |team| %>
+      <tr>
+        <td><%= team.name %></td>
+        <td><%= team.nickname %></td>
+        <td><%= team.players.count %></td>
+        <td><%= team.user.email %></td>
+        <td style="text-align: right;">
+          <div class="btn-group" role="group" aria-label="User management">
+            <%= link_to "Ver", [@tournament, team], class: "btn btn-info btn-sm", type: "button" %>
+            <%= link_to "Editar", edit_tournament_team_path(@tournament), class: "btn btn-warning btn-sm", type: "button" %>
+            <%#= link_to "Eliminar", team, method: :delete, data: { confirm: "¿Seguro que quieres eliminar este deporte? Se eliminarán todos los torneos asociados a él" }, class: "btn btn-danger btn-sm", type: "button" %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

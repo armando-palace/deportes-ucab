@@ -51,7 +51,7 @@ class TournamentsController < ApplicationController
   # DELETE /tournaments/1.json
   def destroy
     @tournament.destroy
-     redirect_to tournaments_url, notice: 'Torneo destruido.'
+    redirect_to tournaments_url, notice: 'Torneo destruido.'
   end
 
   private
