@@ -1,6 +1,6 @@
 <%= render 'shared/errors', obj: @user %>
 
-<h1 align="center">Inscripción de Jugadores</h1>
+<h1 align="center">Registro de Usuario</h1>
 
 <%= form_for @user, url: admin_users_path(@user) do |f| %>
   <%= render partial: '/admin/users/form', locals: { f: f } %>
