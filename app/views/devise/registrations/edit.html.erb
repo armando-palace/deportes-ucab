@@ -1,4 +1,4 @@
-<h2 align="center">Editar Información Personal</h2>
+<h2 align="center">Editar Cuenta</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -51,6 +51,12 @@
 
 <h3>Cancelar mi cuenta</h3>
 
-<%= button_to "Eliminar cuenta", registration_path(resource_name), data: { confirm: "¿Estás seguro de querer eliminar tu cuenta?" }, method: :delete, class: "btn btn-danger" %>
+<% if current_user.is_admin? && Role.where(name: "Administrador").take.users.count <= 1 %>
+  <div class="alert alert-warning">
+    <h4>No puedes cancelar tu cuenta porque eres el único administrador, pero puedes modificar el correo y la contraseña.</h4>
+  </div>
+<% else %>
+  <%= button_to "Eliminar cuenta", registration_path(resource_name), data: { confirm: "¿Estás seguro de querer eliminar tu cuenta?" }, method: :delete, class: "btn btn-danger" %>
+<% end %>
 
 <%= link_to "Atrás", :back %>

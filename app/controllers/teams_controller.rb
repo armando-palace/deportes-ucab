@@ -39,13 +39,12 @@ class TeamsController < ApplicationController
     else
       render :edit
     end
-
   end
 
 
   def destroy
     @team.destroy
-    redirect_to teams_url, notice: 'Equipo eliminado correctamente'
+    redirect_to tournament_teams_path, notice: 'Equipo eliminado correctamente'
   end
 
   private

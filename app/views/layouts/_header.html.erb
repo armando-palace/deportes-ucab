@@ -43,7 +43,7 @@
             <%= current_user.email %>
           </a>
           <div class="dropdown-menu" aria-labelledby="profileDropdown">
-            <%= link_to "Mi Perfil", [:admin, current_user], class: "dropdown-item" %>
+            <%= link_to "Editar Perfil", edit_user_registration_path, class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
             <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
@@ -52,9 +52,9 @@
         <li class="nav-item">
           <%= link_to "Iniciar Sesión", new_user_session_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "¡Regístrate!", new_user_registration_path, class: "nav-link" %>
-        </li>
+        <!-- <li class="nav-item">
+          <%#= link_to "¡Regístrate!", new_user_registration_path, class: "nav-link" %>
+        </li> -->
       <% end %>
     </ul>
   </div>

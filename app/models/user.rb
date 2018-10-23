@@ -20,10 +20,10 @@ class User < ApplicationRecord
   end
 
   def is_admin?
-    has_role?(:admin)
+    has_role?("Administrador")
   end
 
   def is_delegate?
-    has_role?(:delegate)
+    has_role?("Delegado")
   end
 end
