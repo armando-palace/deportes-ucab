@@ -1,0 +1,14 @@
+<%= render 'shared/errors', obj: @team %>
+
+<h1 align="center">Equipo Nuevo:</h1>
+
+<%= form_with(model: @team, local: true, url: tournament_teams_path(@tournament)) do |form| %>
+  <%#= render 'form', team: @team, sport: @sport %>
+  <%= render partial: 'form', locals: { form: form } %>
+<% end %>
+
+<div class="row">
+  <div class="col">
+    <%= link_to "Atrás", :back %>
+  </div>
+</div>

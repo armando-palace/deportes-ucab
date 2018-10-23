@@ -1,5 +1,6 @@
 <h1 align="center"><%= @sport.name %></h1>
 
+<<<<<<< HEAD
 <div class="row">
   <div class="col-sm-6">
     <div class="card">
@@ -16,3 +17,43 @@
     </div>
   </div>
 </div>
+=======
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th colspan="6" scope="col" style="text-align: center;">
+        Torneos: <%= @sport.tournaments.count %>
+      </th>
+    </tr>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Fecha de inicio</th>
+      <th scope="col">Fecha de cierre</th>
+      <th scope="col">Período</th>
+      <th scope="col" style="text-align: right;">
+        <%= link_to "Crear Torneo", new_sport_tournament_path(@sport) , class: "btn btn-primary btn-sm" %>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sport.tournaments.each do |tournament| %>
+      <tr>
+        <td><%= tournament.name %></td>
+        <td><%= tournament.description %></td>
+        <td><%= tournament.registration_start_date %></td>
+        <td><%= tournament.registration_end_date %></td>
+        <td><%= tournament.period %></td>
+        <td style="text-align: right;">
+          <div class="btn-group" role="group" aria-label="User management">
+            <%= link_to "Ver", tournament, class: "btn btn-info btn-sm", type: "button" %>
+            <%= link_to "Editar", edit_tournament_path(tournament), class: "btn btn-warning btn-sm", type: "button" %>
+            <%= link_to "Eliminar", tournament, method: :delete, data: { confirm: "¿Seguro que quieres eliminar este torneo?" }, class: "btn btn-danger btn-sm", type: "button" %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+>>>>>>> master

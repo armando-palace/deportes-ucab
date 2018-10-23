@@ -1,0 +1,8 @@
+<%= render 'shared/errors', obj: @player %>
+
+<h1 align="center">Registro de Jugador</h1>
+
+<%= form_for @player, url: admin_players_path(@player) do |f| %>
+  <%= render partial: '/admin/players/form', locals: { f: f } %>
+  <%= f.submit "Registrar Jugador", class: "btn btn-primary" %>
+<% end %>

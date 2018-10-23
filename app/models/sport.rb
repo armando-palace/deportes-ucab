@@ -1,4 +1,9 @@
 class Sport < ApplicationRecord
+<<<<<<< HEAD
+=======
+  has_many :tournaments, dependent: :destroy
+
+>>>>>>> master
   SOCCER = "Fútbol"
   INDOOR_FOOTBALL = "Fútbol Sala"
   BASKETBALL = "Básquetbol"

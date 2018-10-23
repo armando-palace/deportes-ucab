@@ -1,0 +1,8 @@
+<%= render 'shared/errors', obj: @player %>
+
+<h1 align="center">Edición de Jugador</h1>
+
+<%= form_for @player, url: admin_player_path(@player) do |f| %>
+  <%= render partial: '/admin/players/form', locals: { f: f } %>
+  <%= f.submit "Editar Jugador", class: "btn btn-primary" %>
+<% end %>

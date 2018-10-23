@@ -5,8 +5,8 @@ roles.each do |r|
 end
 
 puts "Period Types"
-PeriodType.create!(semester: true)
-PeriodType.create!(semester: false)
+PeriodType.find_or_create_by!(semester: true)
+PeriodType.find_or_create_by!(semester: false)
 
 puts "Periods"
 periods = Period::PERIOD_NUMBERS

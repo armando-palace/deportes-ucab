@@ -11,4 +11,14 @@
  * It is generally better to create a new file per style scope.
  */
 @import "bootstrap";
+.card-body .field {
+    padding-top: 10px;
+}
 
+.card-body .actions {
+  padding-top: 20px;
+}
+
+.fix {
+  padding-bottom: 20px;
+}

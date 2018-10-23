@@ -16,6 +16,7 @@
           <% end %>
           <% if can? :manage, Sport %>
             <div class="dropdown-divider"></div>
+<<<<<<< HEAD:app/views/shared/_header.html.erb
             <%= link_to "Agregar", "#", class: "dropdown-item" %>
           <% end %>
         </div>
@@ -23,6 +24,24 @@
       <% if can? :manage, User %>
         <li class="nav-item">
           <a class="nav-link" href="#">Jugadores</a>
+=======
+            <%= link_to "Ver Todos", sports_path, class: "dropdown-item" %>
+            <%= link_to "Agregar", new_sport_path, class: "dropdown-item" %>
+          <% end %>
+        </div>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Torneos", tournaments_path, class: "nav-link" %>
+      </li>
+      <% if can? :manage, Player %>
+        <li class="nav-item">
+          <%= link_to "Jugadores", admin_players_path, class: "nav-link" %>
+        </li>
+      <% end %>
+      <% if can? :manage, User %>
+        <li class="nav-item">
+          <%= link_to "Usuarios", admin_users_path, class: "nav-link" %>
+>>>>>>> master:app/views/layouts/_header.html.erb
         </li>
       <% end %>
     </ul>
@@ -34,8 +53,12 @@
             <%= current_user.email %>
           </a>
           <div class="dropdown-menu" aria-labelledby="profileDropdown">
+<<<<<<< HEAD:app/views/shared/_header.html.erb
             <%= link_to "Mi Perfil", profile_path, class: "dropdown-item" %>
             <%= link_to "Solicitudes de Registro", "#", class: "dropdown-item" %>
+=======
+            <%= link_to "Editar Perfil", edit_user_registration_path, class: "dropdown-item" %>
+>>>>>>> master:app/views/layouts/_header.html.erb
             <div class="dropdown-divider"></div>
             <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
@@ -44,9 +67,9 @@
         <li class="nav-item">
           <%= link_to "Iniciar Sesión", new_user_session_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "¡Regístrate!", new_user_registration_path, class: "nav-link" %>
-        </li>
+        <!-- <li class="nav-item">
+          <%#= link_to "¡Regístrate!", new_user_registration_path, class: "nav-link" %>
+        </li> -->
       <% end %>
     </ul>
   </div>

@@ -1,0 +1,39 @@
+<h1 align="center">Jugadores</h1>
+
+<div class="row justify-content-sm-center">
+  <div class="col-sm-10">
+    <% unless @players.empty? %>
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Cédula de Identidad</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Segundo Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col" style="text-align: right;"><%= link_to "Registrar Jugador", new_admin_player_path, class: "btn btn-primary btn-sm" %></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @players.each do |player| %>
+            <tr>
+              <td><%= player.id_card %></td>
+              <td><%= player.first_name %></td>
+              <td><%= player.middle_name %></td>
+              <td><%= player.last_name %></td>
+              <td style="text-align: right;">
+                <div class="btn-group" role="group" aria-label="User management">
+                  <%= link_to "Ver", [:admin, player], class: "btn btn-info btn-sm", type: "button" %>
+                  <%= link_to "Editar", edit_admin_player_path(player), class: "btn btn-warning btn-sm", type: "button" %>
+                  <%= link_to "Eliminar", admin_player_path(player), method: :delete, data: { confirm: "¿Seguro que quieres eliminar a este jugador?" }, class: "btn btn-danger btn-sm", type: "button" %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <h3>Sin jugadores inscritos aún</h3>
+    <% end %>
+  </div>
+</div>

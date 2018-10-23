@@ -1,0 +1,8 @@
+<%= render 'shared/errors', obj: @user %>
+
+<h1 align="center">Edición de Usuario</h1>
+
+<%= form_for @user, url: admin_user_path(@user) do |f| %>
+  <%= render partial: '/admin/users/form', locals: { f: f } %>
+  <%= f.submit "Editar Usuario", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,45 @@
+<div class="row justify-content-sm-center">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <%= form.label :name, "Nombre del Equipo" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <%= form.label :nickname, "Apodo" %>
+      <%= form.text_field :nickname, class: "form-control" %>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-sm-center">
+  <div class="col-sm-6">
+    <h3>Jugadores a Inscribir</h3>
+    <% @players.each do |player| %>
+      <label>
+        <%= check_box_tag "team[player_ids][]", player.id %>
+        <%= player.name %>
+      </label>
+      <br>
+    <% end %>
+  </div>
+</div>
+
+<div class="row justify-content-sm-center">
+  <div class="col-sm-6">
+    <%= form.submit "Editar", class: "btn btn-primary" %>
+    <%= link_to "Atrás", :back %>
+  </div>
+</div>
+
+<!-- <div class="field">
+  <legend>Jugadores a inscribir</legend>
+  <%# @players.each do |player| %>
+    <label>
+      <%#= check_box_tag "team[player_ids][]", player.id %>
+      <%#= player.name %>
+    </label>
+    <br>
+  <%# end %>
+</div> -->

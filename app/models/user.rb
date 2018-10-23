@@ -4,36 +4,26 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :user_roles
+  has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles
-  has_one :phone
-  accepts_nested_attributes_for :phone
+  has_many :teams
+  has_many :tournaments
+  has_many :players
 
-  belongs_to :school, optional: true
+  # belongs_to :school, optional: true
+  # belongs_to :period, optional: true
 
-  validates_presence_of :id_card, :first_name, :last_name, :email, on: :update
-
-  def all_names
-    "#{first_name} #{middle_name}"
-  end
-
-  def full_name
-    "#{first_name} #{middle_name} #{last_name}"
-  end
-
-  def name
-    "#{first_name} #{last_name}"
-  end
+  # validates_presence_of :id_card, :first_name, :last_name, :email, on: [:update]
 
   def has_role?(role_name)
     roles.any? {|r| r.name == role_name.to_s}
   end
 
-  def is_super_admin?
-    has_role?(:super_admin)
+  def is_admin?
+    has_role?("Administrador")
   end
 
-  def is_admin?
-    has_role?(:admin) || role?(:super_admin)
+  def is_delegate?
+    has_role?("Delegado")
   end
 end

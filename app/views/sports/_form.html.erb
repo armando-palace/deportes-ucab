@@ -1,0 +1,18 @@
+<%= render 'shared/errors', obj: @sport %>
+
+<%= form_for @sport do |f| %>
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-4">
+      <div class="form-group">
+        <%= f.label :name, "Nombre del Deporte" %>
+        <%= f.text_field :name, class: "form-control", placeholder: "Ej.: Rugby" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-4">
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
