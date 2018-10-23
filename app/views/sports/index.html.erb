@@ -20,7 +20,7 @@
             <td style="text-align: center;"><%= sport.tournaments.count %></td>
             <td style="text-align: right;">
               <div class="btn-group" role="group" aria-label="User management">
-                <%#= link_to "Ver", tournament, class: "btn btn-info btn-sm", type: "button" %>
+                <%= link_to "Ver", sport, class: "btn btn-info btn-sm", type: "button" %>
                 <%= link_to "Editar", edit_sport_path(sport), class: "btn btn-warning btn-sm", type: "button" %>
                 <%= link_to "Eliminar", sport, method: :delete, data: { confirm: "¿Seguro que quieres eliminar este deporte? Se eliminarán todos los torneos asociados a él" }, class: "btn btn-danger btn-sm", type: "button" %>
               </div>

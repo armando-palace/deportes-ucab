@@ -6,16 +6,17 @@
       <thead class="thead-light">
         <tr>
           <th scope="col">Email</th>
-          <th colspan="2" scope="col" style="text-align: right;"><%= link_to "Crear Usuario", new_admin_user_path, class: "btn btn-primary btn-sm" %></th>
+          <th scope="col" style="text-align: right;"><%= link_to "Crear Usuario", new_admin_user_path, class: "btn btn-primary btn-sm" %></th>
         </tr>
       </thead>
 
       <tbody>
         <% @users.each do |user| %>
           <tr>
-            <td><%= link_to user.email, [:admin, user] %></td>
+            <td><%= user.email %></td>
             <td style="text-align: right;">
               <div class="btn-group" role="group" aria-label="User management">
+                <%= link_to "Ver", [:admin, user], class: "btn btn-info btn-sm", type: "button" %>
                 <%= link_to "Editar", edit_admin_user_path(user), class: "btn btn-warning btn-sm", type: "button" %>
                 <%= link_to "Eliminar", admin_user_path(user), method: :delete, data: { confirm: "¿Seguro que quieres eliminar a este usuario?" }, class: "btn btn-danger btn-sm", type: "button" %>
               </div>

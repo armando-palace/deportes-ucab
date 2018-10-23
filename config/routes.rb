@@ -13,9 +13,6 @@ Rails.application.routes.draw do
     # get 'profile', to: 'users#profile'
   end
 
-  # resources :players
-  # get 'profile', to: 'admin/users#profile'
-
   resources :schools, only: [:edit, :update, :index]
   resources :sports do
     resources :tournaments
