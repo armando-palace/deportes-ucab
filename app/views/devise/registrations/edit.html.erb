@@ -6,55 +6,10 @@
   <div class="row">
     <div class="col">
       <div class="form-group">
-        <%= f.label :id_card, "Cédula de Identidad" %>
-        <%= f.text_field :id_card, class: "form-control", placeholder: "V-12.345.678" %>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-group">
         <%= f.label :email, "Correo Electrónico" %>
         <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: "juan@ejemplo.com" %>
       </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <div class="form-group">
-        <%= f.label :first_name, "Primer Nombre" %>
-        <%= f.text_field :first_name, class: "form-control", placeholder: "Juan" %>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-group">
-        <%= f.label :middle_name, "Segundo Nombre" %>
-        <%= f.text_field :middle_name, class: "form-control", placeholder: "Pablo" %>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-group">
-        <%= f.label :last_name, "Apellido" %>
-        <%= f.text_field :last_name, class: "form-control", placeholder: "Pérez" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <%= f.fields_for :phone do |pf| %>
-      <div class="col">
-        <div class="form-group">
-          <%= pf.label :number, "Teléfono" %>
-          <%= pf.text_field :number, class: "form-control" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="row">
     <div class="col">
       <div class="form-group">
         <%= f.label :password, "Contraseña" %> <em>(dejar en blanco si no se desea cambiar)</em>
@@ -64,22 +19,29 @@
         <% end %>
       </div>
     </div>
+  </div>
+
+  <div class="row">
     <div class="col">
       <div class="form-group">
         <%= f.label :password_confirmation, "Confirmación de Contraseña" %><br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
       </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-6 offset-sm-3">
+    <div class="col">
       <div class="form-group">
         <%= f.label :current_password, "Contraseña Actual" %> <i>(para confirmar los cambios)</i>
         <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
       </div>
     </div>
-    <div align="right" class="col-sm-3" style="align-self: end;">
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-sm-3" style="align-self: end;">
       <%= f.submit "Actualizar Datos", class: "btn btn-primary" %>
     </div>
   </div>
