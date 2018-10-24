@@ -26,4 +26,16 @@ class User < ApplicationRecord
   def is_delegate?
     has_role?("Delegado")
   end
+
+  HUMANIZED_ATTRIBUTES = {
+    :password => "Contraseña",
+    :password_confirmation => "Confirmación de Contraseña",
+    :email => "Correo",
+    :user => "Usuario"
+  }
+
+  def self.human_attribute_name(attr, options = {})
+    HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+  end
+
 end
