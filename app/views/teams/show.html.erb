@@ -1,34 +1,63 @@
-<div class="row">
-  <div class="col-sm-12">
+<h1 align="center"><%= @team.name %></h1>
+
+<div class="row justify-content-sm-center">
+  <div class="col-sm-6">
     <div class="card">
-      <div class="card-body" align="center">
-        <p>
-          <strong>Nombre del equipo:</strong>
-          <%= @team.name %>
-        </p>
+      <div class="card-body">
+        <h3 class="card-title">Información del Equipo</h3>
+        <p class="card-text"><b>Apodo:</b> <%= @team.nickname %></p>
+        <p class="card-text"><b>Inscrito en:</b> <%= @team.tournament.name %></p>
+        <p class="card-text"><b>Deporte:</b> <%= @team.tournament.sport.name %></p>
+        <p class="card-text"><b>Creador:</b> <%= @team.user.email %></p>
 
-        <p>
-          <strong>Apodo del equipo:</strong>
-          <%= @team.nickname %>
-        </p>
-
-        <%= link_to 'Editar', edit_tournament_team_path(@tournament) %> |
-        <%= link_to 'Atrás', @tournament %>
-
-        <br><br>
-
-        <h3>Jugadores</h3>
-
-        <% unless @team.players.empty? %>
-          <% @team.players.each do |p| %>
-            <h4><%= link_to p.name, [:admin, p] %></h4>
-          <% end %>
-        <% else %>
-          <h4>No hay jugadores en este equipo aún.</h4>
-        <% end %>
+        <div class="btn-group" role="group">
+          <%= link_to "Editar", edit_tournament_team_path(@tournament, @team), class: "btn btn-warning", type: "button" %>
+          <%= link_to "Eliminar", [@tournament, @team], method: :delete, data: { confirm: "¿Seguro que quieres eliminar este equipo?" }, class: "btn btn-danger", type: "button" %>
+        </div>
 
         <%#= link_to "Inscribir Jugadores en #{@team.name}", new_admin_player_path, class: "btn btn-primary" %>
       </div>
     </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col">
+    <table class="table" style="text-align: center;">
+      <thead class="thead-light">
+        <tr>
+          <th colspan="5" scope="col" style="text-align: center;">Jugadores: <%= @team.players.count %></th>
+        </tr>
+        <tr>
+          <th scope="col">Cédula</th>
+          <th scope="col">Primer Nombre</th>
+          <th scope="col">Segundo Nombre</th>
+          <th scope="col">Apellido</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @team.players.each do |player| %>
+          <tr>
+            <td><%= player.id_card %></td>
+            <td><%= player.name %></td>
+            <td><%= player.middle_name %></td>
+            <td><%= player.last_name %></td>
+            <td style="text-align: right;">
+              <%= link_to "Ver Jugador", [:admin, player], class: "btn btn-info btn-sm", type: "button" %>
+              <!--<div class="btn-group" role="group" aria-label="User management">
+                <%#= link_to "Ver", [:admin, player], class: "btn btn-info btn-sm", type: "button" %>
+                <%#= link_to "Editar", edit_admin_player_path(player), class: "btn btn-warning btn-sm", type: "button" %>
+                <%#= link_to "Eliminar", [:admin, player], method: :delete, data: { confirm: "¿Seguro que quieres eliminar este jugador?" }, class: "btn btn-danger btn-sm", type: "button" %>
+              </div>-->
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
   </div>
 </div>

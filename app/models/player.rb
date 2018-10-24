@@ -7,7 +7,7 @@ class Player < ApplicationRecord
 
   has_one :phone, dependent: :destroy
   has_many :t_shirts, dependent: :destroy
-  has_many :player_teams
+  has_many :player_teams, dependent: :destroy
   has_many :teams, through: :player_teams
 
   accepts_nested_attributes_for :phone, allow_destroy: true
