@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_23_234637) do
+ActiveRecord::Schema.define(version: 2018_10_24_174227) do
+
+  create_table "pairings", force: :cascade do |t|
+    t.string "name"
+    t.integer "tournament_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tournament_id"], name: "index_pairings_on_tournament_id"
+  end
 
   create_table "period_types", force: :cascade do |t|
     t.boolean "semester"
