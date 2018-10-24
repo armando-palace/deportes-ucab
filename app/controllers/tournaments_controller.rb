@@ -61,7 +61,7 @@ class TournamentsController < ApplicationController
     end
 
     def set_sport
-      @sport = Sport.find(params[:id])
+      @sport = Sport.find(params[:sport_id])
     end
 
     def set_team
