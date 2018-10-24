@@ -1,12 +1,15 @@
+<% provide(:button_text, "Crear Torneo") %>
+<%= render 'shared/errors', obj: @tournament %>
+
 <h1 align="center">Crear Torneo</h1>
 
-<%= render 'form', tournament: @tournament %>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-body" align="center">
-            <%= link_to 'Atrás', :back %>
-      </div>
-    </div>
+<%= form_with(model: @tournament, local: true, url: sport_tournaments_path(@sport)) do |form| %>
+  <%#= render 'form', tournament: @tournament %>
+  <%= render partial: 'form', locals: { form: form } %>
+<% end %>
+
+<div class="row justify-content-sm-center">
+  <div class="col-sm-9">
+    <%= link_to 'Atrás', :back %>
   </div>
 </div>

@@ -1,51 +1,41 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-body" align="center">
+<div class="row justify-content-sm-center">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <%= form.label :name, "Nombre del Torneo" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <%= form.label :description, "Descripción" %>
+      <%= form.text_field :description, class: "form-control" %>
+    </div>
+  </div>
+</div>
 
-                  <%= form_with(model: tournament, local: true, url: sport_tournaments_path(@sport)) do |form| %>
-                    <% if tournament.errors.any? %>
-                      <div id="error_explanation">
-                        <h2><%= pluralize(tournament.errors.count, "error") %> No se pudo crear el torneo por estos motivos:</h2>
+<div class="row justify-content-sm-center">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <%= form.label :registration_start_date, "Fecha de Inicio" %>
+      <%= form.date_field :registration_start_date, class: "form-control" %>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <%= form.label :registration_end_date, "Fecha de Finalización" %>
+      <%= form.date_field :registration_end_date, class: "form-control" %>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <%= form.label :period, "Período" %>
+      <%= form.text_field :period, class: "form-control", placeholder: "Ej.: #{Time.now.year}-#{Time.now.year + 1}" %>
+    </div>
+  </div>
+</div>
 
-                        <ul>
-                        <% tournament.errors.full_messages.each do |message| %>
-                          <li><%= message %></li>
-                        <% end %>
-                        </ul>
-                      </div>
-                    <% end %>
-
-                    <div class="field">
-                      <%= form.label "Nombre:" %>
-                      <%= form.text_field :name %>
-                    </div>
-
-                    <div class="field">
-                      <%= form.label "Descripción:" %>
-                      <%= form.text_field :description %>
-                    </div>
-
-                    <div class="field">
-                      <%= form.label "Fecha de Inicio:" %>
-                      <%= form.date_field :registration_start_date %>
-                    </div>
-
-                    <div class="field">
-                      <%= form.label "Fecha de Finalización:" %>
-                      <%= form.date_field :registration_end_date %>
-                    </div>
-
-                    <div class="field">
-                      <%= form.label "Período:" %>
-                      <%= form.text_field :period %>
-                    </div>
-
-                    <div class="actions">
-                      <%= form.submit "CREAR" %>
-                    </div>
-                  <% end %>
-          </div>
-        </div>
-     </div>
- </div>
+<div class="row justify-content-sm-center">
+  <div class="col-sm-9">
+    <%= form.submit yield(:button_text), class: "btn btn-primary" %>
+  </div>
+</div>

@@ -40,11 +40,11 @@ class TournamentsController < ApplicationController
   # PATCH/PUT /tournaments/1
   # PATCH/PUT /tournaments/1.json
   def update
-      if @tournament.update(tournament_params)
-        redirect_to @tournament, notice: 'Torneo editado correctamente.'
-      else
-        render :edit
-      end
+    if @tournament.update(tournament_params)
+      redirect_to @tournament, notice: 'Torneo editado correctamente.'
+    else
+      render :edit
+    end
   end
 
   # DELETE /tournaments/1
@@ -61,7 +61,7 @@ class TournamentsController < ApplicationController
     end
 
     def set_sport
-      @sport = Sport.find(params[:sport_id])
+      @sport = Sport.find(params[:id])
     end
 
     def set_team

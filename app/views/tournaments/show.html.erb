@@ -22,12 +22,13 @@
 
 <hr>
 
-<h2 align="center">Equipos de <%= @tournament.name %></h2>
-
 <div class="row justify-content-sm-center">
   <div class="col-sm-10">
     <table class="table" style="text-align: center;">
       <thead class="thead-light">
+        <tr>
+          <th colspan="5" scope="col">Equipos: <%= @tournament.teams.count %></th>
+        </tr>
         <tr>
           <th scope="col">Nombre</th>
           <th scope="col">Apodo</th>
