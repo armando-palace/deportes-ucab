@@ -11,7 +11,7 @@ class SportsController < ApplicationController
     @sport = Sport.new(sport_params)
 
     if @sport.save
-      redirect_to sports_path
+      redirect_to sports_path, notice: 'Deporte creado correctamente'
     else
       render :new
     end
@@ -22,7 +22,7 @@ class SportsController < ApplicationController
 
   def update
     if @sport.update(sport_params)
-      redirect_to sports_path
+      redirect_to sports_path, notice: 'Deporte actualizado correctamente'
     else
       render :edit
     end
@@ -37,7 +37,7 @@ class SportsController < ApplicationController
 
   def destroy
     @sport.destroy
-    redirect_to sports_path
+    redirect_to sports_path, alert: 'Deporte eliminado correctamente'
   end
 
   private

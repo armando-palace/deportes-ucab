@@ -31,7 +31,7 @@ class TournamentsController < ApplicationController
     @tournament.sport = @sport
 
     if @tournament.save
-      redirect_to @tournament.sport, notice: 'Equipo creado correctamente.'
+      redirect_to @tournament.sport, notice: 'Torneo creado correctamente.'
     else
       render :new
     end
@@ -51,7 +51,7 @@ class TournamentsController < ApplicationController
   # DELETE /tournaments/1.json
   def destroy
     @tournament.destroy
-    redirect_to tournaments_url, notice: 'Torneo destruido.'
+    redirect_to tournaments_url, alert: 'Torneo destruido.'
   end
 
   private
