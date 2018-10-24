@@ -1,6 +1,8 @@
 class Sport < ApplicationRecord
   has_many :tournaments, dependent: :destroy
 
+  validates_presence_of :name
+
   SOCCER = "Fútbol"
   INDOOR_FOOTBALL = "Fútbol Sala"
   BASKETBALL = "Básquetbol"

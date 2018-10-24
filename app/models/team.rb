@@ -6,4 +6,6 @@ class Team < ApplicationRecord
   has_many :players, through: :player_teams
 
   accepts_nested_attributes_for :players
+
+  validates_presence_of :name
 end
