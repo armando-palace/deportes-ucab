@@ -13,7 +13,7 @@ class Admin::PlayersController < ApplicationController
     if @player.save
       redirect_to admin_players_path
     else
-      render "new"
+      render :new
     end
   end
 
@@ -47,8 +47,8 @@ class Admin::PlayersController < ApplicationController
       params.require(:player).permit(
         :id_card, :first_name, :middle_name, :last_name,
         :school_id, :period_id, :team_id, :user_id,
-        phone_attributes: [:number, :phone_type_id],
-        t_shirts_attributes: [:dorsal_number]
+        phone_attributes: [:id, :number, :phone_type_id],
+        t_shirts_attributes: [:id, :dorsal_number, :_destroy]
       )
     end
 end

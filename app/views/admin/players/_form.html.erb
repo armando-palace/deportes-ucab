@@ -46,7 +46,7 @@
   <div class="col">
     <div class="form-group">
       <%= f.fields_for :t_shirts do |tsf| %>
-        <%= tsf.label :dorsal_number, "Número de Dorsal" %>
+        <%= tsf.label :dorsal_number, "Número de Dorsal" %> | <%= tsf.check_box :_destroy %> Eliminar
         <%= tsf.number_field :dorsal_number, class: "form-control", placeholder: "Ej.: 10" %>
       <% end %>
     </div>
