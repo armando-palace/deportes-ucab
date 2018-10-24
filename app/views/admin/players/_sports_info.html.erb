@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Información Deportiva</h4>
+    <p class="card-text"><b>Deportes practicantes:</b>
+      <br>
+      <% @player.teams.each do |team| %>
+        <%= team.tournament.sport.name %>
+        <br>
+      <% end %>
+    </p>
+    <p class="card-text"><b>Playeras:</b> <%= @player.t_shirts.count %>
+      <br>
+      Números:
+      <br>
+      <% @player.t_shirts.each do |t_shirt| %>
+        <%= t_shirt.dorsal_number %>
+        <br>
+      <% end %>
+    </p>
+    <p class="card-text"><b>Equipos a los que pertenece:</b>
+      <br>
+      <% @player.teams.each do |team| %>
+        <%= "#{team.name} (#{team.nickname})" %>
+        <br>
+      <% end %>
+    </p>
+    <p class="card-text"><b>Torneos en los que participa:</b>
+      <br>
+      <% @player.teams.each do |team| %>
+        <%= team.tournament.name %>
+        <br>
+      <% end %>
+    </p>
+  </div>
+</div>

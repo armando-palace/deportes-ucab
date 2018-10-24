@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Información Personal</h4>
+    <p class="card-text"><b>Cédula de Identidad:</b> <%= @player.id_card %></p>
+    <p class="card-text"><b>Primer Nombre:</b> <%= @player.first_name %></p>
+    <p class="card-text"><b>Segundo Nombre:</b> <%= @player.middle_name || "No indicado" %></p>
+    <p class="card-text"><b>Apellido:</b> <%= @player.last_name %></p>
+    <p class="card-text"><b>Teléfono:</b> <%= "#{@player.phone.number} (#{@player.phone.phone_type.name})" %></p>
+  </div>
+</div>

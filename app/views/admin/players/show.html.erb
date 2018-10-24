@@ -4,65 +4,19 @@
   <div class="col">
     <div class="row">
       <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Información Personal</h4>
-            <p class="card-text"><b>Cédula de Identidad:</b> <%= @player.id_card %></p>
-            <p class="card-text"><b>Primer Nombre:</b> <%= @player.first_name %></p>
-            <p class="card-text"><b>Segundo Nombre:</b> <%= @player.middle_name || "No indicado" %></p>
-            <p class="card-text"><b>Apellido:</b> <%= @player.last_name %></p>
-            <p class="card-text"><b>Teléfono:</b> <%= "#{@player.phone.number} (#{@player.phone.phone_type.name})" %></p>
-          </div>
-        </div>
+        <%= render "personal_info" %>
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Información Académica</h4>
-            <p class="card-text"><b>Escuela:</b> <%= @player.school.name %></p>
-            <p class="card-text"><b>Semestre:</b> <%= @player.period.period_number %></p>
-          </div>
-        </div>
+        <%= render "academic_info" %>
       </div>
     </div>    
   </div>
 
   <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Información Deportiva</h4>
-        <p class="card-text"><b>Deportes practicantes:</b>
-          <br>
-          <% @player.teams.each do |team| %>
-            <%= team.tournament.sport.name %>
-            <br>
-          <% end %>
-        </p>
-        <p class="card-text"><b>Equipos a los que pertenece:</b>
-          <br>
-          <% @player.teams.each do |team| %>
-            <%= "#{team.name} (#{team.nickname})" %>
-            <br>
-          <% end %>
-        </p>
-        <p class="card-text"><b>Torneos en los que participa:</b>
-          <br>
-          <% @player.teams.each do |team| %>
-            <%= team.tournament.name %>
-            <br>
-          <% end %>
-        </p>
-      </div>
-    </div>
+    <%= render "sports_info" %>
   </div>
 </div>
 <br>
-
-<div class="row justify-content-sm-center">
-  <div class="col-sm-6">
-    
-  </div>
-</div>
