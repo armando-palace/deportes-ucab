@@ -1,7 +1,7 @@
 <h1 align="center"><%= @tournament.name %></h1>
 
-<div class="row">
-  <div class="col-sm-5">
+<div class="row justify-content-sm-center">
+  <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
         <h3 align="center" class="card-title">Información</h3>
@@ -18,11 +18,14 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-7">
-    <h3>Emparejamientos</h3>
+</div>
+
+<div class="row">
+  <div class="col">
+    <h3 align="center">Emparejamientos</h3>
 
     <% @tournament.pairings.each do |pairing| %>
-      
+      <p><%= pairing.name %></p>
     <% end %>
   </div>
 </div>
