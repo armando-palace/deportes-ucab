@@ -13,7 +13,7 @@ class Admin::UsersController < ApplicationController
     if @user.save
       redirect_to [:admin, @user]
     else
-      # @roles = Role.all
+      @roles = Role.all
       render :new
     end
   end
