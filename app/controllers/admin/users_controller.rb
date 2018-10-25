@@ -25,6 +25,7 @@ class Admin::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to [:admin, @user]
     else
+      @roles = Role.all
       render :edit
     end
   end
