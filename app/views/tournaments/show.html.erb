@@ -20,12 +20,29 @@
   </div>
 </div>
 
+<hr>
+
 <div class="row">
   <div class="col">
     <h3 align="center">Emparejamientos</h3>
 
+    <%= form_for @pairing do |form| %>
+      <%= form.hidden_field :tournament_id, value: @tournament.id %>
+      <%= form.submit "Emparejar Equipos", class: "btn btn-success btn-sm" %>
+    <% end %>
+
     <% @tournament.pairings.each do |pairing| %>
       <p><%= pairing.name %></p>
+
+      <% pairing.games.each do |game| %>
+        <p>Día del enfrentamiento: <%= game.start_datetime %></p>
+        <h4>Equipos a enfrentarse:</h4>
+        <% game.teams.each do |team| %>
+          <p>
+            <%= team.name %>
+          </p>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 </div>
