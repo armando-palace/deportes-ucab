@@ -1,0 +1,24 @@
+<h1 align="center">Agregar Información al Enfrentamiento</h1>
+
+<%= form_for @game do |form| %>
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <%= form.label :start_date, "Fecha del partido" %>
+        <%= form.date_field :start_date, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <%= form.label :start_time, "Hora del partido" %>
+        <%= form.time_field :start_time, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-6">
+      <%= form.submit "Listo", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

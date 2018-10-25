@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  resources :pairings
+  resources :pairings, only: [:create]
+  resources :games, only: [:edit, :update]
 
   resources :schools, only: [:edit, :update, :index]
   resources :sports do

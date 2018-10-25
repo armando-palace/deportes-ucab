@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_210721) do
+ActiveRecord::Schema.define(version: 2018_10_25_041646) do
 
   create_table "games", force: :cascade do |t|
-    t.datetime "start_datetime"
     t.integer "pairing_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start_date"
+    t.time "start_time"
     t.index ["pairing_id"], name: "index_games_on_pairing_id"
   end
 
