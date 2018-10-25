@@ -22,8 +22,8 @@
 
 <hr>
 
-<div class="row">
-  <div class="col">
+<div class="row justify-content-sm-center">
+  <div class="col-sm-6">
     <h3 align="center">Emparejamientos</h3>
 
     <%= form_for @pairing do |form| %>
@@ -31,17 +31,33 @@
       <%= form.submit "Emparejar Equipos", class: "btn btn-success btn-sm" %>
     <% end %>
 
-    <% @tournament.pairings.each do |pairing| %>
+    <% @tournament.pairings.each_with_index do |pairing, i| %>
+      <h5>Emparejamiento <%= i + 1 %></h5>
       <p><%= pairing.name %></p>
 
       <% pairing.games.each do |game| %>
-        <p>Día del enfrentamiento: <%= game.start_datetime %></p>
-        <h4>Equipos a enfrentarse:</h4>
-        <% game.teams.each do |team| %>
-          <p>
-            <%= team.name %>
-          </p>
-        <% end %>
+        <div class="card">
+          <h4 class="card-header">
+            <div class="row">
+              <div class="col">
+                Ganador: <%= "Por definir" %>
+              </div>
+              <div align="right" class="col">
+                <%= link_to "Modificar", "#", class: "btn btn-info btn-sm" %>
+              </div>
+            </div>
+          </h4>
+          <div class="card-body">
+            <h5 class="card-text">Equipos a enfrentarse:</h5>
+            <% game.teams.each do |team| %>
+              <p class="card-text"><%= team.name %></p>
+            <% end %>
+          </div>
+          <div class="card-footer text-muted">
+            <p class="card-text">Día del enfrentamiento: <%= game.start_datetime %></p>
+          </div>
+        </div>
+        <br>
       <% end %>
     <% end %>
   </div>
