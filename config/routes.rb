@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  resources :pairings, only: [:create]
+  resources :pairings, only: [:create, :destroy]
   resources :games, only: [:edit, :update]
 
   resources :schools, only: [:edit, :update, :index]

@@ -1,5 +1,5 @@
 class PairingsController < ApplicationController
-  # before_action :set_pairing, only: [:edit, :update]
+  before_action :set_pairing, only: [:destroy]
 
   def create
     @pairing = Pairing.new(pairing_params)
@@ -11,6 +11,12 @@ class PairingsController < ApplicationController
     else
       redirect_to @pairing.tournament
     end
+  end
+
+  def destroy
+    tournament = @pairing.tournament
+    @pairing.destroy
+    redirect_to tournament
   end
 
   # def edit

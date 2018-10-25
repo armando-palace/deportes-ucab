@@ -33,6 +33,7 @@
 
     <% @tournament.pairings.each_with_index do |pairing, i| %>
       <h5>Emparejamiento <%= i + 1 %></h5>
+      <%= link_to "Eliminar", pairing, method: :delete, data: { confirm: "¿Seguro que quieres eliminar este emparejamiento?" }, class: "btn btn-danger btn-sm" %>
       <p><%= pairing.name %></p>
 
       <% pairing.games.each do |game| %>
