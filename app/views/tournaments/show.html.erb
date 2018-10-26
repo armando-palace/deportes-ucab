@@ -26,9 +26,21 @@
   <div class="col">
     <h3 align="center">Emparejamientos</h3>
 
-    <%= form_for @pairing do |form| %>
-      <%= form.hidden_field :tournament_id, value: @tournament.id %>
-      <%= form.submit "Emparejar Equipos", class: "btn btn-primary btn-sm" %>
+    <%
+      all_winners_set = true
+
+      unless @tournament.pairings.empty?
+        @tournament.pairings.first.games.each do |game|
+          all_winners_set = false if game.winner_teams.empty?
+        end
+      end
+    %>
+
+    <% if all_winners_set %>
+      <%= form_for @pairing, html: { style: "text-align: center;" } do |form| %>
+        <%= form.hidden_field :tournament_id, value: @tournament.id %>
+        <%= form.submit "Emparejar Equipos", class: "btn btn-primary" %>
+      <% end %>
     <% end %>
 
     <% @tournament.pairings.each_with_index do |pairing, i| %>
@@ -51,8 +63,8 @@
                   <h5 class="card-header">
                     <div class="row">
                       <div class="col-sm-8">
-                        <% if game.winner_team != nil %>
-                          Ganador: <%= game.winner_team.name %>
+                        <% unless game.winner_teams.empty? %>
+                          Ganador: <%= game.winner_teams.first.name %>
                         <% else %>
                           Ganador: Por definir
                         <% end %>

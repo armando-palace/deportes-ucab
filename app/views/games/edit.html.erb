@@ -14,10 +14,17 @@
         <%= form.time_field :start_time, class: "form-control" %>
       </div>
     </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <%= form.label :winner_team_ids, "Ganador" %>
+        <%= form.select :winner_team_ids, @game.teams.collect { |t| [ t.name, t.id ] }, {include_blank: true}, class: "form-control" %>
+        <em>Dejar en blanco si no se quiere definir ganador</em>
+      </div>
+    </div>
   </div>
 
   <div class="row justify-content-sm-center">
-    <div class="col-sm-6">
+    <div class="col-sm-10">
       <%= form.submit "Listo", class: "btn btn-primary" %>
       <%= link_to "Cancelar", :back %>
     </div>

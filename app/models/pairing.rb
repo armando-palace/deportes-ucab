@@ -30,8 +30,8 @@ class Pairing < ApplicationRecord
       games.new(team_ids: [pair[0], pair[1]])
     end
 
-    if !even
-      games.new(winner_team: Team.find(shuffled_team_ids.first))
+    unless even
+      games.new(winner_team_ids: [shuffled_team_ids.first])
     end
   end
 end

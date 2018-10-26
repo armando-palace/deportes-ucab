@@ -2,6 +2,7 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:edit, :update]
 
   def update
+    debugger
     if @game.update!(game_params)
       redirect_to @game.pairing.tournament
     else
@@ -16,6 +17,8 @@ class GamesController < ApplicationController
     end
 
     def game_params
-      params.require(:game).permit(:start_date, :start_time)
+      params.require(:game).permit(
+        :start_date, :start_time, :winner_team_ids
+      )
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_25_234405) do
+ActiveRecord::Schema.define(version: 2018_10_26_031807) do
 
   create_table "games", force: :cascade do |t|
     t.integer "pairing_id"
@@ -130,8 +130,6 @@ ActiveRecord::Schema.define(version: 2018_10_25_234405) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "game_id"
-    t.index ["game_id"], name: "index_teams_on_game_id"
     t.index ["sport_id"], name: "index_teams_on_sport_id"
     t.index ["tournament_id"], name: "index_teams_on_tournament_id"
     t.index ["user_id"], name: "index_teams_on_user_id"
@@ -170,6 +168,15 @@ ActiveRecord::Schema.define(version: 2018_10_25_234405) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "winner_team_games", force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_winner_team_games_on_game_id"
+    t.index ["team_id"], name: "index_winner_team_games_on_team_id"
   end
 
 end
