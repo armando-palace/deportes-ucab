@@ -2,7 +2,6 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:edit, :update]
 
   def update
-    debugger
     if @game.update!(game_params)
       redirect_to @game.pairing.tournament
     else
