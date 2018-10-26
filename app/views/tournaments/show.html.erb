@@ -22,51 +22,77 @@
 
 <hr>
 
-<div class="row justify-content-sm-center">
-  <div class="col-sm-6">
+<div class="row">
+  <div class="col">
     <h3 align="center">Emparejamientos</h3>
 
     <%= form_for @pairing do |form| %>
       <%= form.hidden_field :tournament_id, value: @tournament.id %>
-      <%= form.submit "Emparejar Equipos", class: "btn btn-success btn-sm" %>
+      <%= form.submit "Emparejar Equipos", class: "btn btn-primary btn-sm" %>
     <% end %>
 
     <% @tournament.pairings.each_with_index do |pairing, i| %>
-      <h5>Emparejamiento <%= i + 1 %></h5>
-      <%= link_to "Eliminar", pairing, method: :delete, data: { confirm: "¿Seguro que quieres eliminar este emparejamiento?" }, class: "btn btn-danger btn-sm" %>
-      <p><%= pairing.name %></p>
-
-      <% pairing.games.each do |game| %>
-        <div class="card">
-          <h4 class="card-header">
-            <div class="row">
-              <div class="col">
-                Ganador: <%= "Por definir" %>
-              </div>
-              <div align="right" class="col">
-                <%= link_to "Modificar", edit_game_path(game), class: "btn btn-info btn-sm" %>
-              </div>
+      <div class="row">
+        <div class="col">
+          <div align="center" class="row">
+            <div class="col">
+              <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapsePairing<%= i %>" aria-expanded="false" aria-controls="collapsePairing">
+                Emparejamiento <%= i + 1 %>
+              </button>
+              <%= link_to "Eliminar", pairing, method: :delete, data: { confirm: "¿Seguro que quieres eliminarlo? Se eliminarán también los juegos de este emparejamiento" }, class: "btn btn-danger btn-sm" %>
             </div>
-          </h4>
-          <div class="card-body">
-            <h5 class="card-text">Equipos a enfrentarse:</h5>
-            <%# game.teams.each do |team| %>
-              <!--<p class="card-text"><%#= team.name %></p>-->
-            <%# end %>
-            <p class="card-text">
-              <%= game.teams.first.name %> Vs. <%= game.teams.last.name %>
-            </p>
           </div>
-          <div class="card-footer text-muted">
-            <% if game.start_date != nil && game.start_time != nil %>
-              <p class="card-text">Día del enfrentamiento: <%= "#{game.start_date} #{game.start_time.strftime('%I:%M %p')}" %></p>
-            <% else %>
-              <p class="card-text">Día del enfrentamiento: Por definir</p>
+
+          <p><%= pairing.name %></p>
+          <div class="row collapse" id="collapsePairing<%= i %>">
+            <% pairing.games.each do |game| %>
+              <div class="col-sm-4">
+                <div class="card bg-light">
+                  <h5 class="card-header">
+                    <div class="row">
+                      <div class="col-sm-8">
+                        <% if game.winner_team != nil %>
+                          Ganador: <%= game.winner_team.name %>
+                        <% else %>
+                          Ganador: Por definir
+                        <% end %>
+                      </div>
+                      <div align="right" class="col-sm-4">
+                        <% unless game.teams.empty? %>
+                          <%= link_to "Editar", edit_game_path(game), class: "btn btn-success btn-sm" %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </h5>
+                  <div class="card-body">
+                    <h5 class="card-text">Equipos a enfrentarse:</h5>
+                    <p class="card-text">
+                      <% unless game.teams.empty? %>
+                        <%= game.teams.first.name %> Vs. <%= game.teams.last.name %>
+                      <% else %>
+                        Sin enfrentamiento (el equipo clasifica a la siguiente ronda).
+                      <% end %>
+                    </p>
+                  </div>
+                  <div class="card-footer text-muted">
+                    <% if game.start_date != nil && game.start_time != nil %>
+                      <p class="card-text">Día del enfrentamiento: <%= "#{game.start_date} #{game.start_time.strftime('%I:%M %p')}" %></p>
+                    <% else %>
+                      <% if game.teams.empty? %>
+                        Día del enfrentamiento: No aplica
+                      <% else %>
+                        <p class="card-text">Día del enfrentamiento: Por definir</p>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                <br>
+              </div>
+              <br>
             <% end %>
           </div>
         </div>
-        <br>
-      <% end %>
+      </div>
     <% end %>
   </div>
 </div>
@@ -86,7 +112,13 @@
           <th scope="col">Cantidad de Jugadores</th>
           <th scope="col">Creador</th>
           <th scope="col" style="text-align: right;">
-            <%= link_to "Agregar Equipo", new_tournament_team_path(@tournament), class: "btn btn-primary btn-sm" %>
+            <% if @tournament.pairings.empty? %>
+              <%= link_to "Agregar Equipo", new_tournament_team_path(@tournament), class: "btn btn-primary btn-sm" %>
+            <% else %>
+              <button type="button" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="left" title="No puedes agregar equipos mientras haya emparejamientos vigentes">
+                Agregar Equipo
+              </button>
+            <% end %>
           </th>
         </tr>
       </thead>
