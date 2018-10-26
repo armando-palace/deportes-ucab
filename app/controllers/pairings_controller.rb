@@ -16,6 +16,9 @@ class PairingsController < ApplicationController
   def destroy
     tournament = @pairing.tournament
     @pairing.destroy
+    unless tournament.pairings.empty?
+      tournament.pairings.last.update_attribute(:round_finished, false)
+    end
     redirect_to tournament
   end
 

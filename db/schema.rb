@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2018_10_26_173527) do
     t.integer "tournament_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "round_finished"
+    t.boolean "round_finished", null: false, default: false
     t.index ["tournament_id"], name: "index_pairings_on_tournament_id"
   end
 

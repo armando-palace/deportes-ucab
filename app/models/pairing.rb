@@ -21,7 +21,7 @@ class Pairing < ApplicationRecord
               team_ids << team.id
             end
           end
-          pairing.update!(round_finished: true)
+          pairing.update_attribute(:round_finished, true)
         end
       end
     end
