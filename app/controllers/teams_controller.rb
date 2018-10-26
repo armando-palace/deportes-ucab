@@ -43,8 +43,9 @@ class TeamsController < ApplicationController
 
 
   def destroy
+    tournament = @team.tournament
     @team.destroy
-    redirect_to tournament_teams_path, alert: 'Equipo eliminado correctamente'
+    redirect_to tournament, alert: 'Equipo eliminado correctamente'
   end
 
   private
