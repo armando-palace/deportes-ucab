@@ -51,13 +51,19 @@
           <div align="center" class="row">
             <div class="col">
               <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapsePairing<%= i %>" aria-expanded="false" aria-controls="collapsePairing">
-                Emparejamiento <%= i + 1 %>
+                <%= pairing.name || "Emparejamiento #{i + 1}" %>
               </button>
-              <%= link_to "Eliminar", pairing, method: :delete, data: { confirm: "¿Seguro que quieres eliminarlo? Se eliminarán también los juegos de este emparejamiento" }, class: "btn btn-danger btn-sm" %>
+              <% if pairing == Pairing.last %>
+                <%#= link_to "Eliminar", pairing, method: :delete, data: { confirm: "¿Seguro que quieres eliminarlo? Se eliminarán también los juegos de este emparejamiento" }, class: "btn btn-danger btn-sm" %>
+                <div class="btn-group" role="group" aria-label="Pairing management">
+                  <%= link_to "Editar", edit_pairing_path(pairing), class: "btn btn-success btn-sm", type: "button" %>
+                  <%= link_to "Eliminar", pairing, method: :delete, data: { confirm: "¿Seguro que quieres eliminarlo? Se eliminarán también los juegos de este emparejamiento" }, class: "btn btn-danger btn-sm", type: "button" %>
+                </div>
+              <% end %>
+
             </div>
           </div>
-
-          <p><%= pairing.name %></p>
+          <br>
           <div class="row collapse" id="collapsePairing<%= i %>">
             <% pairing.games.each do |game| %>
               <div class="col-sm-4">
@@ -72,7 +78,7 @@
                         <% end %>
                       </div>
                       <div align="right" class="col-sm-4">
-                        <% unless game.teams.empty? %>
+                        <% unless game.teams.empty? || game.pairing.round_finished %>
                           <%= link_to "Editar", edit_game_path(game), class: "btn btn-success btn-sm" %>
                         <% end %>
                       </div>
@@ -95,7 +101,7 @@
                       <% if game.teams.empty? %>
                         Día del enfrentamiento: No aplica
                       <% else %>
-                        <p class="card-text">Día del enfrentamiento: Por definir</p>
+                        <p class="card-text">Día del enfrentamiento: Sin indicar</p>
                       <% end %>
                     <% end %>
                   </div>

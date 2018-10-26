@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_26_031807) do
+ActiveRecord::Schema.define(version: 2018_10_26_173527) do
 
   create_table "games", force: :cascade do |t|
     t.integer "pairing_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2018_10_26_031807) do
     t.integer "tournament_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "round_finished"
     t.index ["tournament_id"], name: "index_pairings_on_tournament_id"
   end
 

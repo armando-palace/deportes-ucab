@@ -1,0 +1,15 @@
+<h1 align="center">Modificar nombre de emparejamiento</h1>
+
+<%= form_for @pairing do |form| %>
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-4">
+      <div class="form-group">
+        <%= form.label :name, "Nombre del emparejamiento" %>
+        <%= form.text_field :name, class: "form-control", autofocus: true, placeholder: "Ej.: Semifinal" %>
+      </div>
+
+      <%= form.submit "Cambiar", class: "btn btn-primary" %>
+      <%= link_to "Cancelar", :back %>
+    </div>
+  </div>
+<% end %>

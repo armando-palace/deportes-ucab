@@ -3,20 +3,35 @@ class Pairing < ApplicationRecord
 
   has_many :games, dependent: :destroy
 
-  # Barajar equipos
-  def shuffle_teams
+  validates_presence_of :name, on: :update
+
+  # Seleccionar los equipos a emparejar
+  def select_teams
     team_ids = []
 
-    tournament.teams.each do |team|
-      team_ids << team.id
+    if tournament.pairings.empty?
+      tournament.teams.each do |team|
+        team_ids << team.id
+      end
+    else
+      tournament.pairings.each do |pairing|
+        unless pairing.round_finished
+          pairing.games.each do |game|
+            game.winner_teams.each do |team|
+              team_ids << team.id
+            end
+          end
+          pairing.update!(round_finished: true)
+        end
+      end
     end
 
-    team_ids.shuffle!
+    team_ids
   end
 
   # Emparejamiento de equipos
   def match
-    shuffled_team_ids = shuffle_teams
+    shuffled_team_ids = select_teams.shuffle
     total_teams = shuffled_team_ids.count
 
     if total_teams % 2 == 0
