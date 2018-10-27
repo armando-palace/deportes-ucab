@@ -12,10 +12,15 @@
 
         <div class="btn-group" role="group">
           <%= link_to "Editar", edit_tournament_team_path(@tournament, @team), class: "btn btn-warning", type: "button" %>
-          <%= link_to "Eliminar", [@tournament, @team], method: :delete, data: { confirm: "¿Seguro que quieres eliminar este equipo?" }, class: "btn btn-danger", type: "button" %>
+          <% if @tournament.pairings.empty? %>
+            <%= link_to "Eliminar", [@tournament, @team], method: :delete, data: { confirm: "¿Seguro que quieres eliminar este equipo?" }, class: "btn btn-danger", type: "button" %>
+          <% else %>
+            <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="left" title="No puedes eliminar equipos mientras haya emparejamientos vigentes en un torneo al que este equipo pertenece">
+              Eliminar
+            </button>
+          <% end %>
         </div>
-
-        <%#= link_to "Inscribir Jugadores en #{@team.name}", new_admin_player_path, class: "btn btn-primary" %>
+        <%= link_to "Atrás", :back %>
       </div>
     </div>
   </div>

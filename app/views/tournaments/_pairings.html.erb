@@ -95,7 +95,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <% if all_winners_set[i] && !pairing.round_finished %>
+          <% if all_winners_set[i] && !pairing.round_finished && pairing.games.count > 1 %>
             <%= form_for @pairing, html: { style: "text-align: center;" } do |form| %>
               <%= form.hidden_field :tournament_id, value: @tournament.id %>
               <%= form.submit "Emparejar Equipos", class: "btn btn-primary" %>
