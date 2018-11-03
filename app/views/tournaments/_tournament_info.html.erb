@@ -1,0 +1,25 @@
+<div class="row justify-content-sm-center">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h3 align="center" class="card-title">Información</h3>
+        <p class="card-text"><b>Deporte:</b> <%= @tournament.sport.name %></p>
+        <p class="card-text"><b>Descripción:</b> <%= @tournament.description %></p>
+        <p class="card-text"><b>Fecha de inicio:</b> <%= @tournament.registration_start_date %></p>
+        <p class="card-text"><b>Fecha de cierre:</b> <%= @tournament.registration_end_date %></p>
+        <p class="card-text"><b>Período:</b> <%= @tournament.period %></p>
+        <% unless @tournament.pairings.last.games.last.winner_teams.empty? %>
+          <h4 align="center" class="card-text"><b>Ganador</b></h4>
+          <p align="center" class="card-text">
+            <%= @tournament.pairings.last.games.last.winner_teams.first.name %>
+          </p>
+        <% end %>
+        
+        <div class="btn-group" role="group">
+          <%= link_to "Editar", edit_tournament_path(@tournament), class: "btn btn-warning btn-sm card-link", type: "button" %>
+          <%= link_to "Eliminar", @tournament, method: :delete, data: { confirm: "¿Seguro que quieres eliminar este torneo?" }, class: "btn btn-danger btn-sm", type: "button" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

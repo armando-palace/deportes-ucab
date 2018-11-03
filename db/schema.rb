@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_23_234637) do
+ActiveRecord::Schema.define(version: 2018_10_26_173527) do
+
+  create_table "games", force: :cascade do |t|
+    t.integer "pairing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "start_date"
+    t.time "start_time"
+    t.index ["pairing_id"], name: "index_games_on_pairing_id"
+  end
+
+  create_table "pairings", force: :cascade do |t|
+    t.string "name"
+    t.integer "tournament_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "round_finished", null: false, default: false
+    t.index ["tournament_id"], name: "index_pairings_on_tournament_id"
+  end
 
   create_table "period_types", force: :cascade do |t|
     t.boolean "semester"
@@ -96,6 +114,15 @@ ActiveRecord::Schema.define(version: 2018_10_23_234637) do
     t.index ["tournament_id"], name: "index_t_shirts_on_tournament_id"
   end
 
+  create_table "team_games", force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_team_games_on_game_id"
+    t.index ["team_id"], name: "index_team_games_on_team_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.string "nickname"
@@ -142,6 +169,15 @@ ActiveRecord::Schema.define(version: 2018_10_23_234637) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "winner_team_games", force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_winner_team_games_on_game_id"
+    t.index ["team_id"], name: "index_winner_team_games_on_team_id"
   end
 
 end

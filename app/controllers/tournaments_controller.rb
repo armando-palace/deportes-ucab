@@ -13,6 +13,7 @@ class TournamentsController < ApplicationController
   # GET /tournaments/1
   # GET /tournaments/1.json
   def show
+    @pairing = Pairing.new
   end
 
   # GET /tournaments/new

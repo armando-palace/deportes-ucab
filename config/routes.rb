@@ -10,8 +10,10 @@ Rails.application.routes.draw do
 
     resources :players
     resources :users
-    # get 'profile', to: 'users#profile'
   end
+
+  resources :pairings, only: [:edit, :update, :create, :destroy]
+  resources :games, only: [:edit, :update]
 
   resources :schools, only: [:edit, :update, :index]
   resources :sports do

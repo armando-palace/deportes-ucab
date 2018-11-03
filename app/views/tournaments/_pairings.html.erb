@@ -1,0 +1,108 @@
+<div class="row">
+  <div class="col">
+    <h3 align="center">Emparejamientos</h3>
+
+    <%
+      all_winners_set = true
+
+      unless @tournament.pairings.empty?
+        @tournament.pairings.first.games.each do |game|
+          all_winners_set = false if game.winner_teams.empty?
+        end
+      end
+    %>
+
+    <% if all_winners_set && @tournament.pairings.empty? %>
+      <%= form_for @pairing, html: { style: "text-align: center;" } do |form| %>
+        <%= form.hidden_field :tournament_id, value: @tournament.id %>
+        <%= form.submit "Emparejar Equipos", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+
+    <br>
+    <%
+      all_winners_set = []
+      @tournament.pairings.each do |pairing|
+        all_winners_set << true
+      end
+    %>
+    <% @tournament.pairings.each_with_index do |pairing, i| %>
+      <div class="row">
+        <div class="col">
+          <div align="center" class="row">
+            <div class="col">
+              <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapsePairing<%= i %>" aria-expanded="false" aria-controls="collapsePairing">
+                <%= pairing.name || "Emparejamiento #{i + 1}" %>
+              </button>
+              <div class="btn-group" role="group" aria-label="Pairing management">
+                <%= link_to "Editar", edit_pairing_path(pairing), class: "btn btn-success btn-sm", type: "button" %>
+                <% if pairing == Pairing.last %>
+                  <%= link_to "Eliminar", pairing, method: :delete, data: { confirm: "¿Seguro que quieres eliminarlo? Se eliminarán también los juegos de este emparejamiento" }, class: "btn btn-danger btn-sm", type: "button" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row collapse" id="collapsePairing<%= i %>">
+            <% pairing.games.each do |game| %>
+              <div class="col-sm-4">
+                <div class="card bg-light">
+                  <h5 class="card-header">
+                    <div class="row">
+                      <div class="col-sm-8">
+                        <% unless game.winner_teams.empty? %>
+                          Ganador: <%= game.winner_teams.first.name %>
+                        <% else %>
+                          Ganador: Por definir
+                        <% end %>
+                      </div>
+                      <div align="right" class="col-sm-4">
+                        <% unless game.teams.empty? || game.pairing.round_finished %>
+                          <%= link_to "Editar", edit_game_path(game), class: "btn btn-success btn-sm" %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </h5>
+                  <div class="card-body">
+                    <h5 class="card-text">Equipos a enfrentarse:</h5>
+                    <p class="card-text">
+                      <% unless game.teams.empty? %>
+                        <%= game.teams.first.name %> Vs. <%= game.teams.last.name %>
+                      <% else %>
+                        Sin enfrentamiento (el equipo clasifica a la siguiente ronda).
+                      <% end %>
+                    </p>
+                  </div>
+                  <div class="card-footer text-muted">
+                    <% if game.start_date != nil && game.start_time != nil %>
+                      <p class="card-text">Día del enfrentamiento: <%= "#{game.start_date} #{game.start_time.strftime('%I:%M %p')}" %></p>
+                    <% else %>
+                      <% if game.teams.empty? %>
+                        Día del enfrentamiento: No aplica
+                      <% else %>
+                        <p class="card-text">Día del enfrentamiento: Sin indicar</p>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                <br>
+              </div>
+              <br>
+              <% all_winners_set[i] = false if game.winner_teams.empty? %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <% if all_winners_set[i] && !pairing.round_finished && pairing.games.count > 1 %>
+            <%= form_for @pairing, html: { style: "text-align: center;" } do |form| %>
+              <%= form.hidden_field :tournament_id, value: @tournament.id %>
+              <%= form.submit "Emparejar Equipos", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
