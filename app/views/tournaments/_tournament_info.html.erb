@@ -8,7 +8,7 @@
         <p class="card-text"><b>Fecha de inicio:</b> <%= @tournament.registration_start_date %></p>
         <p class="card-text"><b>Fecha de cierre:</b> <%= @tournament.registration_end_date %></p>
         <p class="card-text"><b>Período:</b> <%= @tournament.period %></p>
-        <% unless @tournament.pairings.last.games.last.winner_teams.empty? %>
+        <% unless @tournament.pairings.empty? || @tournament.pairings.last.games.last.winner_teams.empty? %>
           <h4 align="center" class="card-text"><b>Ganador</b></h4>
           <p align="center" class="card-text">
             <%= @tournament.pairings.last.games.last.winner_teams.first.name %>

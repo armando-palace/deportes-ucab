@@ -64,23 +64,64 @@
                     </div>
                   </h5>
                   <div class="card-body">
-                    <h5 class="card-text">Equipos a enfrentarse:</h5>
+                    <h5 align="center" class="card-text"><b>Equipos a enfrentarse</b></h5>
                     <p class="card-text">
                       <% unless game.teams.empty? %>
-                        <%= game.teams.first.name %> Vs. <%= game.teams.last.name %>
+                        <div class="row">
+                          <div align="right" class="col">
+                            <div class="row">
+                              <div class="col">
+                                <%= game.teams.first.name %>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <% unless game.scores.empty? %>
+                                  <%= game.scores.first.points %>
+                                <% end %>
+                              </div>
+                            </div>
+                          </div>
+                          <div align="center" class="col-sm-2">
+                            <div class="row">
+                              <div class="col">
+                                Vs.
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                -
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="row">
+                              <div class="col">
+                                <%= game.teams.last.name %>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <% unless game.scores.empty? %>
+                                  <%= game.scores.second.points %>
+                                <% end %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       <% else %>
                         Sin enfrentamiento (el equipo clasifica a la siguiente ronda).
                       <% end %>
                     </p>
                   </div>
-                  <div class="card-footer text-muted">
+                  <div align="center" class="card-footer text-muted">
                     <% if game.start_date != nil && game.start_time != nil %>
-                      <p class="card-text">Día del enfrentamiento: <%= "#{game.start_date} #{game.start_time.strftime('%I:%M %p')}" %></p>
+                      <p class="card-text">Fecha del juego: <%= "#{game.start_date} #{game.start_time.strftime('%I:%M %p')}" %></p>
                     <% else %>
                       <% if game.teams.empty? %>
-                        Día del enfrentamiento: No aplica
+                        Fecha del juego: No aplica
                       <% else %>
-                        <p class="card-text">Día del enfrentamiento: Sin indicar</p>
+                        <p class="card-text">Fecha del juego: Sin indicar</p>
                       <% end %>
                     <% end %>
                   </div>
