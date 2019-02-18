@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2018_10_26_173527) do
     t.integer "tournament_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "round_finished", null: false, default: false
+    t.boolean "round_finished"
     t.index ["tournament_id"], name: "index_pairings_on_tournament_id"
   end
 
@@ -105,13 +105,9 @@ ActiveRecord::Schema.define(version: 2018_10_26_173527) do
   create_table "t_shirts", force: :cascade do |t|
     t.integer "dorsal_number"
     t.integer "player_id"
-    t.integer "team_id"
-    t.integer "tournament_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["player_id"], name: "index_t_shirts_on_player_id"
-    t.index ["team_id"], name: "index_t_shirts_on_team_id"
-    t.index ["tournament_id"], name: "index_t_shirts_on_tournament_id"
   end
 
   create_table "team_games", force: :cascade do |t|
@@ -167,7 +163,9 @@ ActiveRecord::Schema.define(version: 2018_10_26_173527) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "period_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["period_id"], name: "index_users_on_period_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
