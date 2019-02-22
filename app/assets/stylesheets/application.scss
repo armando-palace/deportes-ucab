@@ -15,7 +15,22 @@
     padding-top: 10px;
 }
 
+.welcome {
+ background-image: url("1.jpg");
+}
+.deportes{
+ border: 1px solid #ddd;
+ border-radius: 50%;
+ margin-top: 50px;
+ height: 450px;
+ display: block;
+ margin-left: auto;
+ margin-right: auto;
+ width: 50%;
+}
+
 .card-body .actions {
+  background-color: #f2dede;
   padding-top: 20px;
 }
 
