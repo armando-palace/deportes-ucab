@@ -1,5 +1,5 @@
 class Score < ApplicationRecord
-  belongs_to :game
-  belongs_to :team
-  belongs_to :player
+  belongs_to :game, optional: true
+  belongs_to :team, optional: true
+  belongs_to :player, optional: true
 end
